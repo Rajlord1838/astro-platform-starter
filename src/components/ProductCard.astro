@@ -1,0 +1,33 @@
+---
+interface Props {
+    title: string;
+    price: string;
+    imageUrl: string;
+    category?: string;
+}
+
+const { title, price, imageUrl, category } = Astro.props;
+---
+
+<div class="group flex flex-col gap-2 cursor-pointer">
+    <div class="relative overflow-hidden aspect-[3/4] bg-gray-100 mb-2">
+        <img
+            src={imageUrl}
+            alt={title}
+            class="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            loading="lazy"
+        />
+        {category && (
+            <span class="absolute top-2 left-2 bg-white px-2 py-1 text-xs font-semibold uppercase tracking-wider text-black">
+                {category}
+            </span>
+        )}
+    </div>
+    <div class="flex justify-between items-start">
+        <h3 class="font-medium text-lg text-black">{title}</h3>
+        <span class="font-semibold text-black">{price}</span>
+    </div>
+    <button class="mt-2 w-full py-2 bg-black text-white text-sm font-semibold uppercase tracking-wide opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        Add to Cart
+    </button>
+</div>

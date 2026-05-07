@@ -1,21 +1,78 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import ProductCard from '../components/ProductCard.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const featuredProducts = [
+    {
+        title: "Classic White Tee",
+        price: "$29",
+        imageUrl: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        category: "New"
+    },
+    {
+        title: "Denim Jacket",
+        price: "$89",
+        imageUrl: "https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        category: "Bestseller"
+    },
+    {
+        title: "Minimalist Watch",
+        price: "$199",
+        imageUrl: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        title: "Leather Tote",
+        price: "$149",
+        imageUrl: "https://images.unsplash.com/photo-1584916201218-f4242ceb4809?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        category: "Sale"
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store | Minimalist Apparel">
+    <section class="py-16 sm:py-24 mb-16 border-b border-gray-200 text-center flex flex-col items-center">
+        <h1 class="mb-6 text-5xl font-extrabold tracking-tight sm:text-6xl uppercase">
+            Elevate Your Style
+        </h1>
+        <p class="max-w-2xl text-xl text-gray-600 mb-10">
+            Discover our latest collection of minimalist apparel. Designed for comfort, crafted for elegance.
+        </p>
+        <a href="#collection" class="btn btn-lg bg-black text-white hover:bg-gray-800 uppercase tracking-widest px-8">
+            Shop the Collection
+        </a>
+    </section>
+
+    <section id="collection" class="mb-24">
+        <div class="flex justify-between items-end mb-8">
+            <h2 class="text-3xl font-bold tracking-tight uppercase">Featured Arrivals</h2>
+            <a href="#" class="text-black uppercase text-sm font-semibold tracking-wider hover:underline">View All</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {featuredProducts.map(product => (
+                <ProductCard
+                    title={product.title}
+                    price={product.price}
+                    imageUrl={product.imageUrl}
+                    category={product.category}
+                />
+            ))}
+        </div>
+    </section>
+
+    <section class="bg-gray-100 py-16 px-8 mb-24 text-center rounded-lg">
+        <h2 class="text-3xl font-bold mb-4 uppercase tracking-tight">Join Our Newsletter</h2>
+        <p class="text-gray-600 mb-8 max-w-xl mx-auto">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+        <form class="flex flex-col sm:flex-row max-w-md mx-auto gap-2">
+            <input
+                type="email"
+                placeholder="Enter your email"
+                class="flex-grow px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-black"
+                required
+            />
+            <button type="submit" class="btn bg-black text-white px-6 uppercase tracking-wider">
+                Subscribe
+            </button>
+        </form>
+    </section>
 </Layout>

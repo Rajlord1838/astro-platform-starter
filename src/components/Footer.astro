@@ -2,8 +2,31 @@
 
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
-    </p>
+<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16 mt-16 border-t border-gray-200 text-gray-600">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-8">
+        <div>
+            <h3 class="font-bold text-gray-900 mb-4">VogueStyle</h3>
+            <p class="text-sm">Your ultimate destination for modern fashion. Discover the latest trends and elevate your wardrobe.</p>
+        </div>
+        <div>
+            <h3 class="font-bold text-gray-900 mb-4">Customer Care</h3>
+            <ul class="text-sm space-y-2">
+                <li><a href="#" class="hover:text-primary transition-colors">Contact Us</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Shipping & Returns</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">FAQ</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Size Guide</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3 class="font-bold text-gray-900 mb-4">Newsletter</h3>
+            <p class="text-sm mb-4">Subscribe to receive updates, access to exclusive deals, and more.</p>
+            <form class="flex gap-2">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-3 py-2 border border-gray-300 rounded text-sm focus:outline-none focus:border-gray-500" />
+                <button type="submit" class="bg-gray-900 text-white px-4 py-2 rounded text-sm font-medium hover:bg-gray-800 transition-colors">Subscribe</button>
+            </form>
+        </div>
+    </div>
+    <div class="text-center text-sm border-t border-gray-200 pt-8">
+        <p>&copy; {new Date().getFullYear()} VogueStyle. All rights reserved.</p>
+    </div>
 </footer>

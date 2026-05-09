@@ -1,21 +1,129 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const products = [
+    {
+        id: 1,
+        name: "Classic White Tee",
+        price: "$29.99",
+        image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80",
+        category: "T-Shirts"
+    },
+    {
+        id: 2,
+        name: "Denim Jacket",
+        price: "$89.99",
+        image: "https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&w=500&q=80",
+        category: "Outerwear"
+    },
+    {
+        id: 3,
+        name: "Summer Floral Dress",
+        price: "$59.99",
+        image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?auto=format&fit=crop&w=500&q=80",
+        category: "Dresses"
+    },
+    {
+        id: 4,
+        name: "High-Waist Jeans",
+        price: "$79.99",
+        image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80",
+        category: "Jeans"
+    },
+    {
+        id: 5,
+        name: "Leather Crossbody Bag",
+        price: "$129.99",
+        image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=500&q=80",
+        category: "Accessories"
+    },
+    {
+        id: 6,
+        name: "Minimalist Sneakers",
+        price: "$110.00",
+        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=500&q=80",
+        category: "Shoes"
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="VogueStyle | Modern Fashion">
+    <!-- Hero Section -->
+    <section class="relative h-[60vh] min-h-[400px] flex items-center justify-center mb-16 overflow-hidden rounded-lg">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=1600&q=80" alt="Fashion Hero" class="w-full h-full object-cover object-center" />
+            <div class="absolute inset-0 bg-black/40"></div>
+        </div>
+        <div class="relative z-10 text-center px-4 max-w-3xl">
+            <h1 class="text-white mb-4 drop-shadow-md">Discover Your Style</h1>
+            <p class="text-white text-lg sm:text-xl mb-8 drop-shadow-md">Explore our new collection of modern, sustainable fashion designed for everyday elegance.</p>
+            <a href="#collection" class="btn btn-lg bg-white text-gray-900 hover:bg-gray-100">Shop the Collection</a>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+            <h2>Trending Categories</h2>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="#" class="group relative h-64 overflow-hidden rounded-lg flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1550614000-4b95d4edfa26?auto=format&fit=crop&w=400&q=80" alt="Women" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
+                <h3 class="relative text-white font-bold tracking-wider uppercase z-10">Women</h3>
+            </a>
+            <a href="#" class="group relative h-64 overflow-hidden rounded-lg flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1480455624313-e29b44bbfde1?auto=format&fit=crop&w=400&q=80" alt="Men" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
+                <h3 class="relative text-white font-bold tracking-wider uppercase z-10">Men</h3>
+            </a>
+            <a href="#" class="group relative h-64 overflow-hidden rounded-lg flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1606760227091-3dd870d97f1d?auto=format&fit=crop&w=400&q=80" alt="Accessories" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
+                <h3 class="relative text-white font-bold tracking-wider uppercase z-10">Accessories</h3>
+            </a>
+            <a href="#" class="group relative h-64 overflow-hidden rounded-lg flex items-center justify-center">
+                <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=400&q=80" alt="Shoes" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors"></div>
+                <h3 class="relative text-white font-bold tracking-wider uppercase z-10">Shoes</h3>
+            </a>
+        </div>
+    </section>
+
+    <!-- New Arrivals -->
+    <section id="collection" class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+            <h2>New Arrivals</h2>
+            <a href="#" class="text-accent hover:underline font-medium">View All &rarr;</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+                <div class="group flex flex-col">
+                    <div class="relative overflow-hidden rounded-lg mb-4 aspect-[3/4] bg-gray-100">
+                        <img src={product.image} alt={product.name} class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                        <div class="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-t from-black/60 to-transparent flex justify-center">
+                            <button class="btn btn-outline bg-white/90 hover:bg-white text-gray-900 border-none w-full shadow-lg">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex flex-col flex-1">
+                        <span class="text-xs text-gray-500 mb-1 uppercase tracking-wider">{product.category}</span>
+                        <h3 class="text-base font-semibold text-gray-900 mb-1 group-hover:text-accent transition-colors"><a href="#">{product.name}</a></h3>
+                        <p class="font-medium text-gray-900">{product.price}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
+
+    <!-- Newsletter CTA -->
+    <section class="bg-gray-50 rounded-2xl p-8 sm:p-12 text-center mb-8 border border-gray-100">
+        <h2 class="mb-4">Get 15% Off Your First Order</h2>
+        <p class="text-gray-600 mb-8 max-w-md mx-auto">Join our mailing list to receive an exclusive discount, early access to sales, and styling tips.</p>
+        <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+            <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 border border-gray-300 rounded text-base focus:outline-none focus:border-gray-500 focus:ring-1 focus:ring-gray-500" required />
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+    </section>
 </Layout>

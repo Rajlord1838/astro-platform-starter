@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { products } from '../data/products';
+---
+
+<Layout title="Shop - Fashion Store">
+    <section class="py-12">
+        <h1 class="mb-10 text-4xl font-bold text-center">Shop All Products</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {products.map((product) => (
+                <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1">
+                    <a href={`/product/${product.id}`}>
+                        <img src={product.image} alt={product.name} class="w-full h-72 object-cover" />
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold mb-2">{product.name}</h3>
+                            <p class="text-sm text-gray-400 mb-2 uppercase tracking-wide">{product.category}</p>
+                            <p class="text-gray-300 font-medium mb-4">${product.price.toFixed(2)}</p>
+                            <p class="text-primary hover:underline">View Details &rarr;</p>
+                        </div>
+                    </a>
+                </div>
+            ))}
+        </div>
+    </section>
+</Layout>

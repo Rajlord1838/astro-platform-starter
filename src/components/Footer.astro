@@ -2,8 +2,13 @@
 
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
+<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16 flex justify-between items-center text-sm">
+    <p>
+        &copy; {new Date().getFullYear()} Fashion Store. All rights reserved.
     </p>
+    <ul class="flex gap-4">
+        <li><a href="/returns" class="decoration-dashed text-primary underline-offset-8">Returns</a></li>
+        <li><a href="/faq" class="decoration-dashed text-primary underline-offset-8">FAQ</a></li>
+        <li><a href="/contact" class="decoration-dashed text-primary underline-offset-8">Contact</a></li>
+    </ul>
 </footer>

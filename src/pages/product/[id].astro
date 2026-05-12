@@ -1,0 +1,94 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export function getStaticPaths() {
+  const products = [
+    {
+        id: '1',
+        name: 'Classic Linen Blend Dress',
+        price: '$89.00',
+        description: 'A timeless silhouette crafted from a breathable linen blend. Perfect for warm days and easily layered for cooler evenings.',
+        image: 'https://images.unsplash.com/photo-1515347619362-673471010729?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+        id: '2',
+        name: 'Tailored Silk Blouse',
+        price: '$120.00',
+        description: 'Elevate your office or evening attire with this 100% silk blouse featuring a subtle sheen and relaxed fit.',
+        image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+        id: '3',
+        name: 'Everyday Leather Tote',
+        price: '$185.00',
+        description: 'A spacious, durable tote bag made from genuine leather. It fits a 15-inch laptop and all your daily essentials.',
+        image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+        id: '4',
+        name: 'Wool Blend Oversized Coat',
+        price: '$250.00',
+        description: 'Stay warm and stylish. This oversized coat features dropped shoulders, large lapels, and deep pockets.',
+        image: 'https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+        id: '5',
+        name: 'Pleated Midi Skirt',
+        price: '$75.00',
+        description: 'A versatile midi skirt with sharp pleats that offer beautiful movement. Pair with a simple tee or a chunky knit.',
+        image: 'https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=800&auto=format&fit=crop',
+    },
+    {
+        id: '6',
+        name: 'Ribbed Knit Sweater',
+        price: '$95.00',
+        description: 'Soft, cozy, and textured. This ribbed sweater is a staple for layering during the colder months.',
+        image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=800&auto=format&fit=crop',
+    }
+  ];
+
+  return products.map(product => ({
+    params: { id: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+---
+
+<Layout title={`${product.name} - Fashion Store`}>
+    <div class="py-12 lg:py-24">
+        <a href="/shop" class="text-sm text-gray-500 hover:text-gray-900 mb-8 inline-block">&larr; Back to Shop</a>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
+            <!-- Product Image -->
+            <div class="aspect-[3/4] bg-gray-100 overflow-hidden">
+                <img src={product.image} alt={product.name} class="h-full w-full object-cover object-center" />
+            </div>
+
+            <!-- Product Details -->
+            <div class="flex flex-col justify-center">
+                <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">{product.name}</h1>
+                <p class="mt-4 text-2xl text-gray-900">{product.price}</p>
+
+                <div class="mt-8">
+                    <h2 class="text-sm font-medium text-gray-900 uppercase tracking-wide">Description</h2>
+                    <p class="mt-4 text-gray-600 leading-relaxed">{product.description}</p>
+                </div>
+
+                <div class="mt-10">
+                    <button class="w-full btn btn-lg py-4 uppercase tracking-wider">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="mt-8 border-t border-gray-100 pt-8">
+                    <ul class="text-sm text-gray-500 space-y-2">
+                        <li>Free standard shipping on orders over $150</li>
+                        <li>Free 30-day returns</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</Layout>

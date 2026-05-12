@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const products = [
+    {
+        id: '1',
+        name: 'Classic Linen Blend Dress',
+        price: '$89.00',
+        image: 'https://images.unsplash.com/photo-1515347619362-673471010729?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: '2',
+        name: 'Tailored Silk Blouse',
+        price: '$120.00',
+        image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: '3',
+        name: 'Everyday Leather Tote',
+        price: '$185.00',
+        image: 'https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: '4',
+        name: 'Wool Blend Oversized Coat',
+        price: '$250.00',
+        image: 'https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: '5',
+        name: 'Pleated Midi Skirt',
+        price: '$75.00',
+        image: 'https://images.unsplash.com/photo-1583496661160-c588c443c982?q=80&w=600&auto=format&fit=crop',
+    },
+    {
+        id: '6',
+        name: 'Ribbed Knit Sweater',
+        price: '$95.00',
+        image: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=600&auto=format&fit=crop',
+    }
+];
+---
+
+<Layout title="Shop All - Fashion Store">
+    <div class="py-12">
+        <h1 class="mb-4">Shop All</h1>
+        <p class="text-gray-600 mb-12">Browse our entire collection of carefully crafted pieces.</p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+            {products.map((product) => (
+                <a href={`/product/${product.id}`} class="group block">
+                    <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-4">
+                        <img src={product.image} alt={product.name} class="h-full w-full object-cover object-center group-hover:opacity-75 transition-opacity" />
+                    </div>
+                    <h3 class="text-sm font-medium text-gray-900">{product.name}</h3>
+                    <p class="mt-1 text-sm text-gray-500">{product.price}</p>
+                </a>
+            ))}
+        </div>
+    </div>
+</Layout>

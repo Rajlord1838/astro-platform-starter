@@ -1,21 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Home - Fashion Store">
+    <section class="flex flex-col items-center text-center py-20 px-4">
+        <h1 class="mb-6 max-w-4xl">Discover Your Unique Style</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mb-10">
+            Explore our curated collection of contemporary fashion designed for the modern individual. Elevate your everyday wardrobe.
+        </p>
+        <a href="/shop" class="btn btn-lg">Shop the Collection</a>
+    </section>
+
+    <section class="py-16">
+        <div class="flex justify-between items-end mb-8">
+            <h2>New Arrivals</h2>
+            <a href="/shop" class="text-sm font-semibold hover:underline">View All</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Sample Product 1 -->
+            <a href="/product/1" class="group block">
+                <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-4">
+                    <img src="https://images.unsplash.com/photo-1515347619362-673471010729?q=80&w=600&auto=format&fit=crop" alt="Minimalist Watch" class="h-full w-full object-cover object-center group-hover:opacity-75 transition-opacity" />
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Classic Linen Blend Dress</h3>
+                <p class="mt-1 text-sm text-gray-500">$89.00</p>
+            </a>
+            <!-- Sample Product 2 -->
+            <a href="/product/2" class="group block">
+                <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-4">
+                    <img src="https://images.unsplash.com/photo-1539008835657-9e8e9680c956?q=80&w=600&auto=format&fit=crop" alt="Silk Blouse" class="h-full w-full object-cover object-center group-hover:opacity-75 transition-opacity" />
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Tailored Silk Blouse</h3>
+                <p class="mt-1 text-sm text-gray-500">$120.00</p>
+            </a>
+            <!-- Sample Product 3 -->
+            <a href="/product/3" class="group block">
+                <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-4">
+                    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop" alt="Leather Tote" class="h-full w-full object-cover object-center group-hover:opacity-75 transition-opacity" />
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Everyday Leather Tote</h3>
+                <p class="mt-1 text-sm text-gray-500">$185.00</p>
+            </a>
+            <!-- Sample Product 4 -->
+            <a href="/product/4" class="group block">
+                <div class="aspect-[3/4] w-full overflow-hidden bg-gray-100 mb-4">
+                    <img src="https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=600&auto=format&fit=crop" alt="Oversized Coat" class="h-full w-full object-cover object-center group-hover:opacity-75 transition-opacity" />
+                </div>
+                <h3 class="text-sm font-medium text-gray-900">Wool Blend Oversized Coat</h3>
+                <p class="mt-1 text-sm text-gray-500">$250.00</p>
+            </a>
+        </div>
+    </section>
 </Layout>

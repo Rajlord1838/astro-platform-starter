@@ -1,21 +1,141 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import ProductCard from '../components/ProductCard.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const featuredProducts = [
+    {
+        id: 1,
+        title: 'Classic White T-Shirt',
+        price: '$29.00',
+        imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Men'
+    },
+    {
+        id: 2,
+        title: 'Denim Jacket',
+        price: '$89.00',
+        imageUrl: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Women'
+    },
+    {
+        id: 3,
+        title: 'Leather Crossbody Bag',
+        price: '$120.00',
+        imageUrl: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Accessories'
+    },
+    {
+        id: 4,
+        title: 'Summer Floral Dress',
+        price: '$55.00',
+        imageUrl: 'https://images.unsplash.com/photo-1572804013309-82a89b4f259e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Women'
+    },
+    {
+        id: 5,
+        title: 'Slim Fit Chinos',
+        price: '$45.00',
+        imageUrl: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Men'
+    },
+    {
+        id: 6,
+        title: 'Minimalist Watch',
+        price: '$150.00',
+        imageUrl: 'https://images.unsplash.com/photo-1524805444758-089113d48a6d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Accessories'
+    },
+    {
+        id: 7,
+        title: 'Knitted Sweater',
+        price: '$65.00',
+        imageUrl: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Unisex'
+    },
+    {
+        id: 8,
+        title: 'Classic Sneakers',
+        price: '$95.00',
+        imageUrl: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        category: 'Shoes'
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="FashionHub - Discover Your Style">
+    <!-- Hero Section -->
+    <div class="relative bg-gray-900 rounded-2xl overflow-hidden mb-16">
+        <div class="absolute inset-0">
+            <img
+                src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Fashion models"
+                class="w-full h-full object-cover opacity-60"
+            />
+        </div>
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl mb-6">
+                Discover Your Style
+            </h1>
+            <p class="mt-4 text-xl text-gray-200 max-w-3xl">
+                Elevate your wardrobe with our latest collection of premium fashion. Carefully curated pieces designed for the modern individual.
+            </p>
+            <div class="mt-10">
+                <a
+                    href="#collection"
+                    class="inline-block bg-white border border-transparent rounded-md py-3 px-8 text-base font-medium text-gray-900 hover:bg-gray-100 transition-colors"
+                >
+                    Shop New Arrivals
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="collection" class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold tracking-tight text-gray-900">Trending Now</h2>
+            <a href="#" class="text-sm font-medium text-gray-600 hover:text-gray-900">
+                View all <span aria-hidden="true">&rarr;</span>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
+            {featuredProducts.map((product) => (
+                <ProductCard
+                    title={product.title}
+                    price={product.price}
+                    imageUrl={product.imageUrl}
+                    category={product.category}
+                />
+            ))}
+        </div>
+    </div>
+
+    <!-- Newsletter Section -->
+    <div class="bg-gray-100 rounded-2xl p-8 sm:p-16 mt-20 text-center">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl mb-4">
+            Join the Club
+        </h2>
+        <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+            Subscribe to our newsletter to get updates on new collections, exclusive sales, and style inspiration. Plus, get 10% off your first order!
+        </p>
+        <form class="max-w-md mx-auto flex gap-4">
+            <label for="email-address" class="sr-only">Email address</label>
+            <input
+                id="email-address"
+                name="email"
+                type="email"
+                autocomplete="email"
+                required
+                class="min-w-0 flex-auto rounded-md border-0 px-4 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-900 sm:text-sm sm:leading-6 bg-white"
+                placeholder="Enter your email"
+            />
+            <button
+                type="submit"
+                class="flex-none rounded-md bg-gray-900 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-gray-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-colors"
+            >
+                Subscribe
+            </button>
+        </form>
+    </div>
 </Layout>

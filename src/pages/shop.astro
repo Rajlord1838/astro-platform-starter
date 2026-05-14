@@ -1,0 +1,45 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../utils/products';
+
+// Extract unique categories
+const categories = ['All', ...new Set(products.map(p => p.category))];
+---
+
+<Layout title="Shop - Fashion Store">
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Shop All Products</h1>
+        <p class="text-gray-400">Browse our complete collection of fashion items.</p>
+    </div>
+
+    <div class="flex flex-col md:flex-row gap-8 mb-16">
+        <!-- Sidebar / Filters -->
+        <aside class="w-full md:w-64 shrink-0">
+            <div class="bg-gray-900 rounded-lg p-6 sticky top-6">
+                <h3 class="text-lg font-bold mb-4 border-b border-gray-700 pb-2">Categories</h3>
+                <ul class="flex flex-col gap-2">
+                    {categories.map(category => (
+                        <li>
+                            <a
+                                href="#"
+                                class={`block py-1 transition-colors ${category === 'All' ? 'text-primary font-medium' : 'text-gray-400 hover:text-white'}`}
+                            >
+                                {category}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Product Grid -->
+        <div class="flex-grow">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {products.map(product => (
+                    <ProductCard product={product} />
+                ))}
+            </div>
+        </div>
+    </div>
+</Layout>

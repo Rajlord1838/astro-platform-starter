@@ -1,21 +1,67 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import ProductCard from '../components/ProductCard.astro';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const featuredProducts = [
+    {
+        title: 'Classic White Tee',
+        price: '$35',
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        title: 'Denim Jacket',
+        price: '$120',
+        image: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        title: 'Minimalist Watch',
+        price: '$195',
+        image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        title: 'Leather Tote Bag',
+        price: '$250',
+        image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        title: 'Summer Dress',
+        price: '$89',
+        image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        title: 'Retro Sunglasses',
+        price: '$65',
+        image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="LUXE Fashion Store">
+    <div class="mb-16 rounded-2xl overflow-hidden relative min-h-[500px] flex items-center justify-center">
+        <img
+            src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Hero Fashion"
+            class="absolute inset-0 w-full h-full object-cover object-center brightness-75"
+        />
+        <div class="relative z-10 text-center px-6">
+            <h1 class="text-white mb-4">Elevate Your Style</h1>
+            <p class="text-white/90 text-lg sm:text-xl mb-8 max-w-2xl mx-auto font-medium">
+                Discover our new collection of minimalist, timeless pieces designed for the modern wardrobe.
+            </p>
+            <a href="#" class="btn btn-lg bg-white text-gray-900 hover:bg-gray-100 px-8">
+                Shop Collection
+            </a>
+        </div>
+    </div>
+
+    <div class="mb-8 flex justify-between items-end">
+        <h2>Featured Products</h2>
+        <a href="#" class="text-sm font-medium hover:underline pb-1">View all</a>
+    </div>
+
+    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 mb-20">
+        {featuredProducts.map((product) => (
+            <ProductCard {...product} />
+        ))}
+    </div>
 </Layout>

@@ -1,21 +1,37 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Welcome to our Fashion Store">
+    <div class="flex flex-col items-center justify-center py-20 text-center">
+        <h1 class="mb-6 text-5xl font-bold tracking-tight sm:text-6xl text-white">
+            Discover Your Style
+        </h1>
+        <p class="mb-10 text-xl text-gray-300 max-w-2xl">
+            Explore our curated collection of trendy and comfortable fashion pieces for every occasion. Update your wardrobe today with our latest arrivals.
+        </p>
+        <p>
+            <a href="/shop" class="btn btn-lg sm:min-w-64 px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-gray-200 transition-colors">
+                Shop Now
+            </a>
+        </p>
+    </div>
+
+    <div class="mt-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center">
+            <h3 class="text-2xl font-semibold mb-4">Men's Collection</h3>
+            <p class="text-gray-400 mb-6 text-center">Fresh looks and classic staples for the modern man.</p>
+            <a href="/shop?category=men" class="text-blue-400 hover:text-blue-300">View Men's &rarr;</a>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center">
+            <h3 class="text-2xl font-semibold mb-4">Women's Collection</h3>
+            <p class="text-gray-400 mb-6 text-center">Elegant designs and comfortable fits for every woman.</p>
+            <a href="/shop?category=women" class="text-blue-400 hover:text-blue-300">View Women's &rarr;</a>
+        </div>
+        <div class="bg-gray-800 rounded-lg p-6 flex flex-col items-center md:col-span-2 lg:col-span-1">
+            <h3 class="text-2xl font-semibold mb-4">Accessories</h3>
+            <p class="text-gray-400 mb-6 text-center">Complete your look with our premium accessories.</p>
+            <a href="/shop?category=accessories" class="text-blue-400 hover:text-blue-300">View Accessories &rarr;</a>
+        </div>
+    </div>
 </Layout>

@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { products } from '../data/products';
+
+export const prerender = false;
+
+const categoryFilter = Astro.url.searchParams.get('category');
+const filteredProducts = categoryFilter
+    ? products.filter(p => p.category === categoryFilter)
+    : products;
+
+const pageTitle = categoryFilter
+    ? `${categoryFilter.charAt(0).toUpperCase() + categoryFilter.slice(1)}'s Collection`
+    : 'All Products';
+---
+
+<Layout title={`Shop - ${pageTitle}`}>
+    <div class="py-10">
+        <h1 class="text-4xl font-bold mb-8 text-white">{pageTitle}</h1>
+
+        <div class="mb-8 flex gap-4">
+            <a href="/shop" class={`px-4 py-2 rounded-full ${!categoryFilter ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>All</a>
+            <a href="/shop?category=men" class={`px-4 py-2 rounded-full ${categoryFilter === 'men' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>Men</a>
+            <a href="/shop?category=women" class={`px-4 py-2 rounded-full ${categoryFilter === 'women' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>Women</a>
+            <a href="/shop?category=accessories" class={`px-4 py-2 rounded-full ${categoryFilter === 'accessories' ? 'bg-white text-black' : 'bg-gray-800 text-white hover:bg-gray-700'}`}>Accessories</a>
+        </div>
+
+        {filteredProducts.length === 0 ? (
+            <p class="text-gray-400">No products found in this category.</p>
+        ) : (
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {filteredProducts.map(product => (
+                    <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                        <img
+                            src={product.imageUrl}
+                            alt={product.name}
+                            class="w-full h-64 object-cover"
+                        />
+                        <div class="p-6">
+                            <h2 class="text-xl font-semibold text-white mb-2">{product.name}</h2>
+                            <p class="text-gray-400 mb-4 line-clamp-2">{product.description}</p>
+                            <div class="flex justify-between items-center">
+                                <span class="text-2xl font-bold text-white">${product.price.toFixed(2)}</span>
+                                <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded font-medium transition-colors">
+                                    Add to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        )}
+    </div>
+</Layout>

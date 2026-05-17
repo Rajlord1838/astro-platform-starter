@@ -1,0 +1,25 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { products } from '../utils/data';
+---
+
+<Layout title="Products - Aura Fashion">
+    <div class="py-8">
+        <h1 class="text-4xl font-bold mb-8">All Products</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {products.map(product => (
+                <a href={`/product/${product.id}`} class="group block">
+                    <div class="aspect-[3/4] overflow-hidden rounded-lg mb-4 bg-gray-100">
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                    </div>
+                    <h3 class="text-lg font-semibold group-hover:text-gray-600 transition-colors">{product.name}</h3>
+                    <p class="text-gray-600">${product.price.toFixed(2)}</p>
+                </a>
+            ))}
+        </div>
+    </div>
+</Layout>

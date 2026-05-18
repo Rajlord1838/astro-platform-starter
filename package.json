@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@astrojs/netlify": "^6.2.3",
-    "@astrojs/react": "^4.2.1",
+    "@astrojs/react": "^4.4.2",
     "@fontsource-variable/inter": "^5.2.5",
     "@netlify/blobs": "^8.2.0",
     "@netlify/functions": "^2.8.2",
@@ -22,8 +22,8 @@
     "blobshape": "^1.0.0",
     "marked": "^13.0.0",
     "marked-shiki": "^1.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "tailwindcss": "^4.0.14",
     "unique-names-generator": "^4.7.1"
   },

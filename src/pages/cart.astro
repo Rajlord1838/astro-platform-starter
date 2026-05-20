@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartDisplay from '../components/CartDisplay';
+---
+
+<Layout title="Your Shopping Cart - Fashion Store">
+    <div class="mb-8">
+        <h1 class="text-4xl font-bold mb-4">Your Cart</h1>
+        <p class="text-xl text-gray-400">Review your items before checkout.</p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+        <CartDisplay client:load />
+    </div>
+</Layout>

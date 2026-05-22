@@ -1,21 +1,100 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import ProductCard from '../components/ProductCard.tsx';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const products = [
+  {
+    id: 'p1',
+    name: 'Classic White T-Shirt',
+    price: 29.99,
+    image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'p2',
+    name: 'Denim Jacket',
+    price: 89.99,
+    image: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'p3',
+    name: 'Leather Sneakers',
+    price: 119.50,
+    image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'p4',
+    name: 'Slim Fit Jeans',
+    price: 59.99,
+    image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'p5',
+    name: 'Wool Blend Coat',
+    price: 149.00,
+    image: 'https://images.unsplash.com/photo-1539533018447-63fcce2678e3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'p6',
+    name: 'Canvas Tote Bag',
+    price: 34.50,
+    image: 'https://images.unsplash.com/photo-1597509538350-0a2a4b8df2f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+  }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="FashionStore | Trendy Clothing & Accessories">
+    <!-- Hero Section -->
+    <div class="relative rounded-2xl overflow-hidden mb-16 bg-slate-800">
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900 to-transparent z-10"></div>
+        <img
+            src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+            alt="Fashion Model"
+            class="w-full h-80 sm:h-96 object-cover object-top opacity-60"
+        />
+        <div class="absolute inset-0 z-20 flex flex-col justify-center px-8 sm:px-16 w-full md:w-2/3">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 leading-tight">
+                Discover Your <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-emerald-400">Unique Style</span>
+            </h1>
+            <p class="text-lg text-slate-300 mb-8 max-w-lg">
+                Explore our latest collection of premium clothing and accessories designed for the modern trendsetter.
+            </p>
+            <div class="flex gap-4">
+                <a href="#collection" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-full font-medium transition-colors inline-flex items-center gap-2">
+                    Shop Now
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="collection" class="mb-16">
+        <div class="flex justify-between items-end mb-8">
+            <div>
+                <h2 class="text-3xl font-bold mb-2">Featured Collection</h2>
+                <p class="text-slate-400">Handpicked essentials for your wardrobe.</p>
+            </div>
+            <a href="#" class="text-indigo-400 hover:text-indigo-300 font-medium hidden sm:block">View all products &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+                <ProductCard client:load product={product} />
+            ))}
+        </div>
+    </div>
+
+    <!-- Newsletter -->
+    <div class="bg-indigo-900/40 border border-indigo-500/20 rounded-2xl p-8 sm:p-12 text-center mb-16">
+        <h2 class="text-2xl sm:text-3xl font-bold mb-4">Join Our Newsletter</h2>
+        <p class="text-indigo-200 mb-8 max-w-2xl mx-auto">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals directly in your inbox.</p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+            <input type="email" placeholder="Enter your email" class="flex-1 bg-slate-800 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500" required />
+            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition-colors whitespace-nowrap">
+                Subscribe
+            </button>
+        </form>
+    </div>
 </Layout>

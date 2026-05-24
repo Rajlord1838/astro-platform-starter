@@ -1,21 +1,80 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import AddToCartButton from '../components/AddToCartButton.tsx';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const products = [
+    {
+        id: '1',
+        name: 'Classic White T-Shirt',
+        price: 29.99,
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        id: '2',
+        name: 'Denim Jacket',
+        price: 89.99,
+        image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        id: '3',
+        name: 'Summer Floral Dress',
+        price: 59.99,
+        image: 'https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        id: '4',
+        name: 'Leather Crossbody Bag',
+        price: 120.00,
+        image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        id: '5',
+        name: 'Minimalist Sneakers',
+        price: 75.00,
+        image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    },
+    {
+        id: '6',
+        name: 'Wool Blend Coat',
+        price: 150.00,
+        image: 'https://images.unsplash.com/photo-1539533113208-f6df8cc8b543?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store | Modern Clothing">
+    <section class="py-12 md:py-20 text-center">
+        <h1 class="mb-4 text-5xl font-extrabold tracking-tight md:text-6xl text-gray-900">
+            Elevate Your Style
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl text-gray-600 mb-10">
+            Discover our new collection of modern, minimalist fashion designed for everyday elegance.
+        </p>
+    </section>
+
+    <section class="py-8">
+        <h2 class="mb-8 text-3xl font-bold">New Arrivals</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+                <div class="flex flex-col bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+                    <div class="relative pb-[125%]">
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            class="absolute inset-0 w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div class="flex flex-col grow p-5">
+                        <h3 class="text-lg font-semibold mb-1 text-gray-900">{product.name}</h3>
+                        <p class="text-gray-600 mb-4">${product.price.toFixed(2)}</p>
+                        <div class="mt-auto">
+                            <AddToCartButton client:load product={product} />
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
 </Layout>

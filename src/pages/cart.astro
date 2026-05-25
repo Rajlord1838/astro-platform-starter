@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartList from '../components/CartList';
+---
+
+<Layout title="Shopping Cart - Fashion Store">
+    <div class="mb-8">
+        <h1 class="mb-2">Shopping Cart</h1>
+        <p class="text-gray-400">Review your items and proceed to checkout.</p>
+    </div>
+
+    <div class="mb-16">
+        <CartList client:load />
+    </div>
+</Layout>

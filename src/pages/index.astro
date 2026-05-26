@@ -1,21 +1,38 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="LUMIÈRE - Modern Fashion">
+    <div class="mb-16 rounded-2xl overflow-hidden relative bg-gray-900 text-white min-h-[400px] flex items-center">
+        <div class="absolute inset-0">
+            <img
+                src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"
+                alt="Fashion collection background"
+                class="w-full h-full object-cover opacity-50"
+            />
+        </div>
+        <div class="relative z-10 p-8 sm:p-16 max-w-2xl">
+            <h1 class="text-4xl sm:text-6xl font-bold mb-6 tracking-tight text-white">Elevate Your Everyday Style</h1>
+            <p class="text-lg sm:text-xl text-gray-200 mb-8 max-w-xl leading-relaxed">
+                Discover our new collection of premium essentials designed for comfort, crafted for longevity, and styled for modern life.
+            </p>
+            <a href="#collection" class="inline-block bg-white text-black px-8 py-4 rounded-md font-bold hover:bg-gray-100 transition-colors">
+                Shop the Collection
+            </a>
+        </div>
+    </div>
+
+    <div id="collection" class="py-12">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold tracking-tight">New Arrivals</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {products.map((product) => (
+                <ProductCard product={product} />
+            ))}
+        </div>
+    </div>
 </Layout>

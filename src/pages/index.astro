@@ -1,21 +1,106 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import ProductCard from '../components/ProductCard.tsx';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="StyleStore - Fashion & Apparel">
+  <div class="space-y-16">
+    <!-- Hero Section -->
+    <div class="relative bg-white overflow-hidden rounded-2xl">
+      <div class="max-w-7xl mx-auto">
+        <div class="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+          <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+            <div class="sm:text-center lg:text-left pt-12">
+              <h1 class="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+                <span class="block xl:inline">Summer styles are</span>{' '}
+                <span class="block text-indigo-600 xl:inline">finally here</span>
+              </h1>
+              <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                Discover our new collection of effortless summer essentials. From breezy dresses to classic denim, find your perfect warm-weather look.
+              </p>
+              <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                <div class="rounded-md shadow">
+                  <a href="#collection" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10 transition-colors">
+                    Shop Collection
+                  </a>
+                </div>
+                <div class="mt-3 sm:mt-0 sm:ml-3">
+                  <a href="#" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 md:py-4 md:text-lg md:px-10 transition-colors">
+                    View Lookbook
+                  </a>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2 hidden lg:block">
+        <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-1.2.1&auto=format&fit=crop&w=1351&q=80" alt="Summer fashion" />
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <div id="collection" class="pt-8">
+      <div class="md:flex md:items-center md:justify-between mb-8">
+        <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Trending Now</h2>
+        <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">
+          Shop the collection<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-y-10 sm:grid-cols-2 gap-x-6 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+        {products.map((product) => (
+          <ProductCard client:load product={product} />
+        ))}
+      </div>
+
+      <div class="mt-8 sm:hidden">
+        <a href="#" class="block text-sm font-medium text-indigo-600 hover:text-indigo-500">
+          Shop the collection<span aria-hidden="true"> &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Feature Section -->
+    <div class="bg-gray-100 rounded-2xl p-8 sm:p-12 mt-16">
+      <div class="max-w-7xl mx-auto text-center">
+        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+          Quality in every detail
+        </h2>
+        <p class="mt-4 max-w-2xl text-xl text-gray-500 mx-auto">
+          We believe in sustainable fashion without compromising on style.
+        </p>
+        <div class="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-3">
+          <div>
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mx-auto">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg leading-6 font-medium text-gray-900">Sustainable Materials</h3>
+            <p class="mt-2 text-base text-gray-500">Ethically sourced cotton and recycled fabrics.</p>
+          </div>
+          <div>
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mx-auto">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg leading-6 font-medium text-gray-900">Quality Assured</h3>
+            <p class="mt-2 text-base text-gray-500">Every piece is checked for perfection.</p>
+          </div>
+          <div>
+            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-indigo-500 text-white mx-auto">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </div>
+            <h3 class="mt-4 text-lg leading-6 font-medium text-gray-900">Fast Shipping</h3>
+            <p class="mt-2 text-base text-gray-500">Free delivery on orders over $50.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </Layout>

@@ -1,0 +1,52 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+19:11:29 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:11:29 [types] Generated 1ms
+19:11:29 [content] Syncing content
+19:11:29 [content] Synced content
+
+ astro  v5.8.0 ready in 702 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:11:29 watching for file changes...
+
+ update  ▶ New version of Astro available: 6.3.8
+  Run npx @astrojs/upgrade to update
+
+19:13:03 [404] / 44ms
+19:21:39 [ERROR] Could not import `./Cart.tsx`.
+  Hint:
+    This is often caused by a typo in the import path. Please make sure the file exists.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/
+  Stack trace:
+    at loadAndTransform (file:///app/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:35725:17)
+19:22:26 [ERROR] Could not import `./Cart.tsx`.
+  Hint:
+    This is often caused by a typo in the import path. Please make sure the file exists.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/
+  Stack trace:
+    at loadAndTransform (file:///app/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:35725:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+19:24:55 [ERROR] Could not import `./Cart.tsx`.
+  Hint:
+    This is often caused by a typo in the import path. Please make sure the file exists.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/
+  Stack trace:
+    at loadAndTransform (file:///app/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:35725:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+19:24:55 [ERROR] Could not import `./Cart.tsx`.
+  Hint:
+    This is often caused by a typo in the import path. Please make sure the file exists.
+  Error reference:
+    https://docs.astro.build/en/reference/errors/failed-to-load-module-ssr/
+  Stack trace:
+    at loadAndTransform (file:///app/node_modules/vite/dist/node/chunks/dep-DBxKXgDP.js:35725:17)
+    [...] See full stack trace in the browser, or rerun with --verbose.
+19:30:18 [200] / 46ms

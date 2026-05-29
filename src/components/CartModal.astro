@@ -1,0 +1,58 @@
+---
+---
+
+<dialog id="cart-modal" class="p-0 m-auto rounded-lg shadow-xl backdrop:bg-black/50 w-[90vw] max-w-md h-[80vh] max-h-[600px] border-0">
+    <div class="flex flex-col h-full bg-white p-6 relative">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-black m-0">Your Cart</h2>
+            <form method="dialog">
+                <button class="text-gray-500 hover:text-gray-700 cursor-pointer w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+                    <span class="sr-only">Close cart</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <div id="cart-react-root" class="flex-grow overflow-hidden flex flex-col">
+            <!-- React component will be mounted here -->
+        </div>
+    </div>
+</dialog>
+
+<script>
+    // Only load React and mount the component when the dialog is opened
+    // This avoids nested client:load hydration issues
+    let isMounted = false;
+
+    const mountCart = async () => {
+        if (isMounted) return;
+
+        const rootElement = document.getElementById('cart-react-root');
+        if (!rootElement) return;
+
+        try {
+            // Dynamically import React and the component
+            const { createRoot } = await import('react-dom/client');
+            const { createElement } = await import('react');
+            const { CartContents } = await import('./CartContents');
+
+            const root = createRoot(rootElement);
+            root.render(createElement(CartContents));
+            isMounted = true;
+        } catch (error) {
+            console.error('Failed to mount cart contents:', error);
+            rootElement.innerHTML = '<p class="text-red-500">Failed to load cart contents. Please try again.</p>';
+        }
+    };
+
+    // Listen for the dialog opening
+    const dialog = document.getElementById('cart-modal') as HTMLDialogElement;
+    if (dialog) {
+        // We can mount it right away or wait for the dialog to open.
+        // For simplicity and immediate reactivity when adding items, let's mount it on load.
+        // The script tag itself will run on the client.
+        document.addEventListener('DOMContentLoaded', mountCart);
+    }
+</script>

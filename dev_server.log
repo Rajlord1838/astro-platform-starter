@@ -1,0 +1,18 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+19:09:21 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:09:21 [types] Generated 1ms
+19:09:21 [content] Syncing content
+19:09:21 [content] Synced content
+19:09:21 [vite] Re-optimizing dependencies because vite config has changed
+19:09:21 [vite] Port 4321 is in use, trying another one...
+
+ astro  v5.8.0 ready in 625 ms
+
+┃ Local    http://localhost:4322/
+┃ Network  use --host to expose
+
+19:09:21 watching for file changes...
+19:10:00 [200] / 95ms

@@ -3,100 +3,28 @@ import Logo from '../components/Logo.astro';
 
 const navItems = [
     { linkText: 'Home', href: '/' },
-    { linkText: 'Shop', href: '/' },
-    { linkText: 'Categories', href: '#' },
-    { linkText: 'About', href: '#' }
+    { linkText: 'Revalidation', href: '/revalidation' },
+    { linkText: 'Image CDN', href: '/image-cdn' },
+    { linkText: 'Edge Function', href: '/edge' },
+    { linkText: 'Blobs', href: '/blobs' }
 ];
 ---
 
-<header class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <nav class="flex items-center gap-4">
-        <a href="/">
-            <Logo />
-        </a>
-        {
-            !!navItems?.length && (
-                <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                    {navItems.map((item) => (
-                        <li>
-                            <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                                {item.linkText}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            )
-        }
-    </nav>
-    <div>
-        <button id="cart-button" class="btn">Cart <span id="cart-count"></span></button>
-    </div>
-</header>
-
-<dialog id="cart-modal" class="backdrop:bg-black/50 p-0 m-auto w-full max-w-md h-full max-h-[80vh] rounded-lg shadow-xl border-none">
-    <div class="relative h-full flex flex-col bg-white">
-        <button id="close-cart" class="absolute top-4 right-4 z-10 text-gray-500 hover:text-gray-700 font-bold text-xl">
-            &times;
-        </button>
-        <div id="cart-root" class="flex-1 h-full"></div>
-    </div>
-</dialog>
-
-<script>
-    import { createElement } from 'react';
-    import { createRoot } from 'react-dom/client';
-    import CartDisplay from './CartDisplay';
-    import { getCart, CART_UPDATED_EVENT } from '../utils/cart';
-
-    const cartModal = document.getElementById('cart-modal') as HTMLDialogElement;
-    const cartButton = document.getElementById('cart-button');
-    const closeCart = document.getElementById('close-cart');
-    const cartRoot = document.getElementById('cart-root');
-    const cartCount = document.getElementById('cart-count');
-
-    const updateCount = () => {
-        if (!cartCount) return;
-        const cart = getCart();
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        cartCount.textContent = totalItems > 0 ? `(${totalItems})` : '';
-    };
-
-    // Initialize count
-    updateCount();
-    window.addEventListener(CART_UPDATED_EVENT, updateCount);
-    window.addEventListener('storage', (e) => {
-        if (e.key === 'fashion_store_cart') updateCount();
-    });
-
-    if (cartButton && cartModal) {
-        cartButton.addEventListener('click', () => {
-            cartModal.showModal();
-        });
+<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
+    <a href="/">
+        <Logo />
+    </a>
+    {
+        !!navItems?.length && (
+            <ul class="flex flex-wrap gap-x-4 gap-y-1">
+                {navItems.map((item) => (
+                    <li>
+                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
+                            {item.linkText}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        )
     }
-
-    if (closeCart && cartModal) {
-        closeCart.addEventListener('click', () => {
-            cartModal.close();
-        });
-    }
-
-    // Close on click outside
-    if (cartModal) {
-        cartModal.addEventListener('click', (e) => {
-            const dialogDimensions = cartModal.getBoundingClientRect();
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                cartModal.close();
-            }
-        });
-    }
-
-    if (cartRoot) {
-        const root = createRoot(cartRoot);
-        root.render(createElement(CartDisplay));
-    }
-</script>
+</nav>

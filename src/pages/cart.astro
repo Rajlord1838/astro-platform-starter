@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { CartView } from '../components/shop/CartView';
+---
+
+<Layout title="Your Shopping Cart - Fashion Store">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="sr-only">Shopping Cart</h1>
+        <CartView client:load />
+    </div>
+</Layout>

@@ -1,21 +1,48 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import AddToCartButton from '../components/AddToCartButton.tsx';
+import Cart from '../components/Cart.tsx';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store">
+    <div class="mb-12 text-center">
+        <h1 class="text-4xl font-bold mb-4">Latest Arrivals</h1>
+        <p class="text-gray-400">Discover our newest collection for the season.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {products.map((product) => (
+            <div class="bg-gray-800 rounded-lg overflow-hidden shadow-lg transition-transform hover:scale-105">
+                <div class="h-64 overflow-hidden relative group">
+                    <img
+                        src={product.imageUrl}
+                        alt={product.title}
+                        class="w-full h-full object-cover"
+                    />
+                    <div class="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded">
+                        {product.category}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-xl font-bold">{product.title}</h2>
+                        <span class="text-lg font-semibold">${product.price}</span>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-4 line-clamp-2">{product.description}</p>
+                    <AddToCartButton product={product} client:load />
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <dialog id="cart-modal" class="p-0 bg-transparent backdrop:bg-black/50 rounded-lg">
+        <Cart client:load />
+    </dialog>
 </Layout>
+
+<style>
+    dialog::backdrop {
+        background-color: rgba(0, 0, 0, 0.75);
+    }
+</style>

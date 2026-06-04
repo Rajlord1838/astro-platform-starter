@@ -1,0 +1,24 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+18:58:45 [@astrojs/netlify] Enabling sessions with filesystem storage
+18:58:45 [types] Generated 1ms
+18:58:45 [content] Syncing content
+18:58:45 [content] Synced content
+18:58:45 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v5.8.0 ready in 671 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+18:58:46 watching for file changes...
+
+ update  ▶ New version of Astro available: 6.4.4
+  Run npx @astrojs/upgrade to update
+
+19:00:24 [200] / 126ms
+19:00:26 [200] /product/1 45ms
+19:00:26 [watch] dev_server.log
+19:00:26 [watch] dev_server.log

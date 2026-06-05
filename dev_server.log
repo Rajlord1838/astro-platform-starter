@@ -1,0 +1,29 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+19:07:32 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:07:32 [types] Generated 1ms
+19:07:32 [content] Syncing content
+19:07:32 [content] Synced content
+19:07:32 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v5.8.0 ready in 716 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:07:32 watching for file changes...
+
+ update  ▶ New version of Astro available: 6.4.4
+  Run npx @astrojs/upgrade to update
+
+19:08:32 [200] / 146ms
+19:10:48 [watch] /src/components/AddToCartButton.tsx, /src/styles/globals.css
+19:10:48 [watch] src/components/AddToCartButton.tsx
+19:10:48 [watch] dev_server.log
+19:10:48 [watch] dev_server.log
+19:10:52 [watch] /src/components/Cart.tsx, /src/styles/globals.css
+19:10:52 [watch] src/components/Cart.tsx
+19:10:52 [watch] dev_server.log
+19:10:52 [watch] dev_server.log

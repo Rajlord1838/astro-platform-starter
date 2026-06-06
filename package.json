@@ -28,7 +28,9 @@
     "unique-names-generator": "^4.7.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.60.0",
     "@types/blobshape": "^1.0.3",
-    "@types/node": "^20.12.7"
+    "@types/node": "^20.12.7",
+    "playwright": "^1.60.0"
   }
 }

@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { products } from '../utils/products';
+import { AddToCartButton } from '../components/AddToCartButton';
+---
+
+<Layout title="Shop - Fashion Store">
+    <div class="mb-10 text-center">
+        <h1 class="mb-4">All Products</h1>
+        <p class="text-gray-400">Browse our complete collection of fashion apparel and accessories.</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+            <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg transition-transform hover:-translate-y-1 flex flex-col h-full">
+                <div class="h-64 overflow-hidden relative">
+                    <img src={product.image} alt={product.name} class="w-full h-full object-cover" loading="lazy" />
+                    <span class="absolute top-2 right-2 bg-black/60 text-white px-2 py-1 text-xs rounded uppercase font-semibold tracking-wider">
+                        {product.category}
+                    </span>
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <h3 class="text-xl font-bold mb-2">{product.name}</h3>
+                    <p class="text-gray-400 text-sm mb-4 flex-grow">{product.description}</p>
+                    <div class="mt-auto">
+                        <div class="flex justify-between items-center mb-4 border-t border-gray-700 pt-4 mt-2">
+                            <span class="text-lg font-bold text-white">${product.price.toFixed(2)}</span>
+                        </div>
+                        <AddToCartButton product={product} client:load />
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+</Layout>

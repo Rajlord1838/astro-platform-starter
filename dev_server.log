@@ -1,0 +1,23 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+19:28:31 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:28:31 [types] Generated 1ms
+19:28:31 [content] Syncing content
+19:28:31 [content] Synced content
+
+ astro  v5.8.0 ready in 666 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:28:32 watching for file changes...
+19:30:55 Configuration file updated. Restarting...
+19:30:55 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:30:55 [vite] Re-optimizing dependencies because vite config has changed
+19:30:56 [content] Syncing content
+19:30:56 [content] Synced content
+19:30:56 [types] Generated 504ms
+19:30:56 [vite] Re-optimizing dependencies because lockfile has changed
+19:36:43 [200] / 140ms

@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { Cart } from '../components/Cart';
 
 interface Props {
     title: string;
@@ -30,5 +31,17 @@ const { title } = Astro.props;
                 <Footer />
             </div>
         </div>
+
+        {/* Native HTML Dialog for Cart Overlay */}
+        <dialog id="cart-dialog" class="backdrop:bg-black/70 backdrop:backdrop-blur-sm bg-transparent border-none m-auto p-0 rounded-lg open:animate-fade-in w-full max-w-md h-full max-h-[80vh]">
+            <Cart client:load />
+        </dialog>
+
+        <style>
+            dialog::backdrop {
+                background: rgba(0, 0, 0, 0.7);
+                backdrop-filter: blur(4px);
+            }
+        </style>
     </body>
 </html>

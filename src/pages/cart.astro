@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartComponent from '../components/react/Cart.tsx';
+---
+
+<Layout title="Your Cart | FashionStore">
+    <div class="mb-8">
+        <h1 class="text-3xl font-bold">Your Shopping Cart</h1>
+    </div>
+
+    <CartComponent client:load />
+</Layout>

@@ -1,9 +1,45 @@
 ---
-
+const year = new Date().getFullYear();
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
-    </p>
+<footer class="bg-gray-900 text-white mt-12 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+      <div>
+        <h3 class="text-lg font-bold mb-4">AstroStore</h3>
+        <p class="text-gray-400 text-sm">Your premium destination for contemporary fashion built with Astro, React, and Tailwind CSS.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Shop</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="#" class="hover:text-white transition-colors">Men's Clothing</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Women's Clothing</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Accessories</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">New Arrivals</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Support</h4>
+        <ul class="space-y-2 text-sm text-gray-400">
+          <li><a href="#" class="hover:text-white transition-colors">Help Center</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Shipping Information</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Returns & Exchanges</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold mb-4">Newsletter</h4>
+        <p class="text-sm text-gray-400 mb-4">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+        <form class="flex">
+          <input type="email" placeholder="Enter your email" class="px-4 py-2 w-full text-black rounded-l focus:outline-none" />
+          <button type="submit" class="bg-white text-black font-bold px-4 py-2 rounded-r hover:bg-gray-200 transition-colors">
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </div>
+    <div class="border-t border-gray-800 mt-12 pt-8 text-center text-sm text-gray-400">
+      <p>&copy; {year} AstroStore. All rights reserved.</p>
+    </div>
+  </div>
 </footer>

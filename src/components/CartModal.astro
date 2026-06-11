@@ -1,0 +1,27 @@
+---
+import { CartContent } from './CartContent';
+---
+
+<dialog id="cart-modal" class="backdrop:bg-black/50 p-0 rounded-lg shadow-2xl border-0 m-auto">
+  <CartContent client:load />
+</dialog>
+
+<style>
+  dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+  }
+  dialog[open] {
+    animation: slide-in 0.3s ease-out;
+  }
+  @keyframes slide-in {
+    from {
+      transform: translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+</style>

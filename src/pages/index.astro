@@ -1,21 +1,59 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import { products } from '../data/products';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+// Hero content
+const title = "New Season Collection";
+const subtitle = "Discover the latest trends in fashion. Elevate your wardrobe with our carefully curated pieces designed for comfort and style.";
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="FashionStore | Home">
+    <section class="mb-16">
+        <div class="relative bg-gray-100 rounded-2xl overflow-hidden">
+            <div class="absolute inset-0">
+                <img
+                    src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=1600&q=80"
+                    alt="Fashion Collection"
+                    class="w-full h-full object-cover opacity-60"
+                />
+            </div>
+            <div class="relative px-8 py-24 sm:px-16 sm:py-32 flex flex-col items-center text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-6">{title}</h1>
+                <p class="max-w-2xl text-lg text-gray-800 mb-8 font-medium bg-white/70 backdrop-blur-sm p-4 rounded-lg">{subtitle}</p>
+                <a href="#products" class="btn btn-lg">Shop Now</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="mb-16">
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-bold text-gray-900">Featured Products</h2>
+        </div>
+
+        <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {products.map((product) => (
+                <div class="group relative">
+                    <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                        <img
+                            src={product.image}
+                            alt={product.name}
+                            class="h-[300px] w-full object-cover object-center group-hover:opacity-75 transition-opacity"
+                        />
+                    </div>
+                    <div class="mt-4 flex justify-between">
+                        <div>
+                            <h3 class="text-sm font-medium text-gray-900">
+                                <a href={`/product/${product.id}`}>
+                                    <span aria-hidden="true" class="absolute inset-0"></span>
+                                    {product.name}
+                                </a>
+                            </h3>
+                            <p class="mt-1 text-sm text-gray-500">{product.category}</p>
+                        </div>
+                        <p class="text-sm font-medium text-gray-900">${product.price.toFixed(2)}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </section>
 </Layout>

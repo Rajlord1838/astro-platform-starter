@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Cart from '../components/Cart';
 
 interface Props {
     title: string;
@@ -21,14 +22,38 @@ const { title } = Astro.props;
         <meta name="generator" content={Astro.generator} />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
+        <style>
+            dialog::backdrop {
+                background: rgba(0, 0, 0, 0.5);
+            }
+            dialog[open] {
+                animation: slide-in 0.3s ease-out;
+            }
+            @keyframes slide-in {
+                from {
+                    transform: translateX(100%);
+                }
+                to {
+                    transform: translateX(0);
+                }
+            }
+        </style>
     </head>
-    <body class="antialiased text-white bg-complementary">
-        <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
-                <Header />
-                <main class="grow"><slot /></main>
-                <Footer />
-            </div>
-        </div>
+    <body class="antialiased text-gray-900 bg-gray-50 min-h-screen flex flex-col">
+        <Header />
+
+        <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <slot />
+        </main>
+
+        <Footer />
+
+        <dialog
+            id="cart-modal"
+            class="fixed right-0 top-0 h-full w-full max-w-md m-0 ml-auto bg-white shadow-2xl p-0 border-none open:flex flex-col"
+            aria-label="Shopping Cart"
+        >
+            <Cart client:load />
+        </dialog>
     </body>
 </html>

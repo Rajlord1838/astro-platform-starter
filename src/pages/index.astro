@@ -1,21 +1,37 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import { ProductCard } from '../components/react/ProductCard';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store | Modern Apparel">
+    <section class="mb-16">
+        <div class="relative bg-gray-900 rounded-2xl overflow-hidden aspect-[21/9] min-h-[400px] flex items-center">
+            <img
+                src="https://images.unsplash.com/photo-1445205170230-053b83016050?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
+                alt="Fashion Collection"
+                class="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-overlay"
+            />
+            <div class="relative z-10 px-8 sm:px-16 text-white max-w-2xl">
+                <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-white">New Arrivals</h1>
+                <p class="text-lg sm:text-xl text-gray-200 mb-8">Discover our latest collection of modern, sustainable fashion for everyday wear.</p>
+                <button class="bg-white text-gray-900 px-8 py-3 rounded font-bold hover:bg-gray-100 transition-colors">
+                    Shop Collection
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="flex items-center justify-between mb-8">
+            <h2 class="text-3xl font-bold">Featured Products</h2>
+            <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">View All &rarr;</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {products.map((product) => (
+                <ProductCard client:load product={product} />
+            ))}
+        </div>
+    </section>
 </Layout>

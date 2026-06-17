@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartComponent from '../components/Cart.tsx';
+---
+
+<Layout title="Your Shopping Cart - Modern Fashion Store">
+    <div class="pb-16 max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold tracking-tight text-gray-900 mb-8">Shopping Cart</h1>
+        <CartComponent client:load />
+    </div>
+</Layout>

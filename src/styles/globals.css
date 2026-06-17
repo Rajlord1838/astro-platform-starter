@@ -2,15 +2,9 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+    --color-primary: #111827;
+    --color-primary-content: #ffffff;
+    --color-complementary: #f3f4f6;
 }
 
 @layer base {
@@ -23,7 +17,7 @@
     }
 
     a:not(.btn) {
-        @apply underline transition hover:opacity-80;
+        @apply transition hover:opacity-80;
     }
 
     pre {
@@ -62,11 +56,11 @@
         border-radius: var(--btn-border-radius, 0.25rem);
 
         &:hover {
-            @apply bg-primary/85;
+            @apply bg-primary/85 text-white;
         }
 
         &:disabled {
-            @apply text-gray-400 bg-gray-700;
+            @apply text-gray-400 bg-gray-200 cursor-not-allowed;
         }
     }
 

@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Cart as CartComponent } from '../components/react/Cart';
+---
+
+<Layout title="Your Cart | FashionStore">
+    <div class="mb-8">
+        <a href="/" class="text-primary hover:underline flex items-center gap-1 w-fit mb-4">
+            &larr; Back to Shopping
+        </a>
+    </div>
+    <CartComponent client:load />
+</Layout>

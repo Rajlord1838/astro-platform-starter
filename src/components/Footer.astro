@@ -2,8 +2,43 @@
 
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
-    </p>
+<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16 mt-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div>
+            <h4 class="font-bold text-lg mb-4 text-white">FashionStore</h4>
+            <p class="text-gray-400 text-sm">Your ultimate destination for the latest trends in fashion and accessories.</p>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg mb-4 text-white">Shop</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+                <li><a href="#" class="hover:text-primary transition-colors">Women's Clothing</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Men's Clothing</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Accessories</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">New Arrivals</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg mb-4 text-white">Help</h4>
+            <ul class="space-y-2 text-sm text-gray-400">
+                <li><a href="#" class="hover:text-primary transition-colors">Customer Service</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Returns & Exchanges</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Shipping Info</a></li>
+                <li><a href="#" class="hover:text-primary transition-colors">Track Order</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4 class="font-bold text-lg mb-4 text-white">Newsletter</h4>
+            <p class="text-gray-400 text-sm mb-4">Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>
+            <div class="flex">
+                <input type="email" placeholder="Enter your email" class="px-3 py-2 bg-gray-800 border border-gray-700 rounded-l focus:outline-none focus:border-primary text-sm w-full" />
+                <button class="bg-primary text-primary-content px-4 py-2 rounded-r font-semibold hover:bg-primary/90 transition-colors">Join</button>
+            </div>
+        </div>
+    </div>
+    <div class="pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+        <p>&copy; {new Date().getFullYear()} FashionStore. All rights reserved.</p>
+        <p class="mt-2">
+            Built with <a href="https://astro.build" class="text-primary hover:underline">Astro</a> and <a href="https://reactjs.org/" class="text-primary hover:underline">React</a>.
+        </p>
+    </div>
 </footer>

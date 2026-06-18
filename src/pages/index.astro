@@ -1,21 +1,72 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import { ProductCard } from '../components/react/ProductCard';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const products = [
+    {
+        id: '1',
+        name: 'Classic White T-Shirt',
+        description: 'A wardrobe essential. Made from 100% organic cotton for ultimate comfort.',
+        price: 29.99,
+        image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        category: 'Men'
+    },
+    {
+        id: '2',
+        name: 'Denim Jacket',
+        description: 'Vintage-inspired denim jacket with a relaxed fit. Perfect for layering.',
+        price: 89.50,
+        image: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        category: 'Women'
+    },
+    {
+        id: '3',
+        name: 'Leather Crossbody Bag',
+        description: 'Minimalist leather bag with adjustable strap and brass hardware.',
+        price: 120.00,
+        image: 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        category: 'Accessories'
+    },
+    {
+        id: '4',
+        name: 'Slim Fit Chinos',
+        description: 'Versatile cotton chinos with a hint of stretch for all-day comfort.',
+        price: 59.99,
+        image: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        category: 'Men'
+    },
+    {
+        id: '5',
+        name: 'Floral Summer Dress',
+        description: 'Lightweight midi dress with a delicate floral print and tie waist.',
+        price: 75.00,
+        image: 'https://images.unsplash.com/photo-1572804013309-82a88b47af11?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        category: 'Women'
+    },
+    {
+        id: '6',
+        name: 'Canvas Sneakers',
+        description: 'Classic low-top canvas sneakers. Goes with almost everything.',
+        price: 45.00,
+        image: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80',
+        category: 'Shoes'
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="FashionStore | Latest Trends">
+    <div class="mb-12 text-center sm:text-left">
+        <h1 class="mb-4 text-4xl sm:text-5xl font-extrabold tracking-tight">
+            New Season <span class="text-primary">Arrivals</span>
+        </h1>
+        <p class="text-xl text-gray-400 max-w-2xl">
+            Discover our curated collection of contemporary fashion. Quality materials meets modern design.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        {products.map((product) => (
+            <ProductCard client:load product={product} />
+        ))}
+    </div>
 </Layout>

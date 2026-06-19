@@ -1,30 +1,86 @@
 ---
-import Logo from '../components/Logo.astro';
-
-const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
-];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
+<header class="bg-white border-b sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <a href="/" class="text-xl font-bold tracking-tight text-gray-900">
+        Fashion<span class="text-indigo-600">Store</span>
+      </a>
+    </div>
+
+    <nav class="hidden md:flex gap-6">
+      <a href="/" class="text-gray-600 hover:text-gray-900 font-medium">Home</a>
+      <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Women</a>
+      <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Men</a>
+      <a href="#" class="text-gray-600 hover:text-gray-900 font-medium">Accessories</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <button
+        id="cart-button"
+        class="relative p-2 text-gray-600 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-full"
+        aria-label="Open Cart"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag">
+          <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/>
+          <path d="M3 6h18"/>
+          <path d="M16 10a4 4 0 0 1-8 0"/>
+        </svg>
+        <span id="cart-badge" class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-indigo-600 border-2 border-white rounded-full -mt-1 -mr-1 hidden">
+          0
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<script>
+  function updateCartBadge() {
+    const cartButton = document.getElementById('cart-button');
+    const cartBadge = document.getElementById('cart-badge');
+
+    if (cartBadge) {
+      try {
+        const cartData = localStorage.getItem('fashion_store_cart');
+        if (cartData) {
+          const { items } = JSON.parse(cartData);
+          const totalItems = items.reduce((sum: number, item: any) => sum + item.quantity, 0);
+
+          if (totalItems > 0) {
+            cartBadge.textContent = totalItems.toString();
+            cartBadge.classList.remove('hidden');
+          } else {
+            cartBadge.classList.add('hidden');
+          }
+        } else {
+            cartBadge.classList.add('hidden');
+        }
+      } catch (e) {
+        console.error('Error reading cart from localStorage', e);
+      }
     }
-</nav>
+  }
+
+  // Initial update
+  updateCartBadge();
+
+  // Listen for custom cart update events
+  window.addEventListener('cart-updated', updateCartBadge);
+
+  // Listen for storage events (if changed in another tab)
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'fashion_store_cart') {
+      updateCartBadge();
+    }
+  });
+
+  // Open cart modal logic
+  const cartBtn = document.getElementById('cart-button');
+  if (cartBtn) {
+    cartBtn.addEventListener('click', () => {
+      const event = new CustomEvent('open-cart');
+      window.dispatchEvent(event);
+    });
+  }
+</script>

@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CartModal from '../components/CartModal';
 
 interface Props {
     title: string;
@@ -30,5 +31,11 @@ const { title } = Astro.props;
                 <Footer />
             </div>
         </div>
+
+        <dialog id="cart-modal" class="p-0 border-0 rounded-lg shadow-2xl backdrop:bg-black/50 backdrop:backdrop-blur-sm fixed right-0 mr-4 sm:mr-8 ml-auto w-full max-w-md h-[80vh] max-h-[800px] open:flex flex-col m-0 top-1/2 -translate-y-1/2">
+            <div class="w-full h-full flex flex-col overflow-hidden">
+                <CartModal client:load />
+            </div>
+        </dialog>
     </body>
 </html>

@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartViewComponent from '../components/CartView';
+---
+
+<Layout title="Shopping Cart - Fashion Store">
+    <div class="max-w-4xl mx-auto py-8">
+        <CartViewComponent client:load />
+    </div>
+</Layout>

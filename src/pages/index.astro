@@ -1,21 +1,73 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import { ProductCard } from '../components/ProductCard.tsx';
+import type { Product } from '../types';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+const products: Product[] = [
+    {
+        id: '1',
+        name: 'Classic White T-Shirt',
+        description: 'A versatile essential for any wardrobe. Made from 100% organic cotton for ultimate comfort.',
+        price: 29.99,
+        imageUrl: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80',
+        category: 'Tops'
+    },
+    {
+        id: '2',
+        name: 'Vintage Blue Jeans',
+        description: 'Classic straight-leg fit with a slight stretch for all-day comfort. Timeless style.',
+        price: 79.50,
+        imageUrl: 'https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1326&q=80',
+        category: 'Bottoms'
+    },
+    {
+        id: '3',
+        name: 'Leather Biker Jacket',
+        description: 'Genuine leather jacket with asymmetrical zip closure and silver hardware.',
+        price: 199.00,
+        imageUrl: 'https://images.unsplash.com/photo-1551028719-01c1eb562110?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1330&q=80',
+        category: 'Outerwear'
+    },
+    {
+        id: '4',
+        name: 'Canvas Sneakers',
+        description: 'Everyday comfortable canvas sneakers with a durable rubber sole.',
+        price: 55.00,
+        imageUrl: 'https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1298&q=80',
+        category: 'Footwear'
+    },
+    {
+        id: '5',
+        name: 'Knit Beanie',
+        description: 'Warm and cozy ribbed knit beanie, perfect for chilly days.',
+        price: 18.50,
+        imageUrl: 'https://images.unsplash.com/photo-1576871337622-98d48d1cf531?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1287&q=80',
+        category: 'Accessories'
+    },
+    {
+        id: '6',
+        name: 'Summer Flowy Dress',
+        description: 'Lightweight and breathable dress with a delicate floral print.',
+        price: 65.00,
+        imageUrl: 'https://images.unsplash.com/photo-1515347619362-6734792c3008?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1334&q=80',
+        category: 'Dresses'
+    }
+];
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store - Trendy Apparel">
+    <div class="mb-12 text-center">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
+            Welcome to <span class="text-primary">Fashion Store</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl text-gray-300">
+            Discover the latest trends in fashion and explore our collection of high-quality clothing and accessories.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+            <ProductCard product={product} client:load />
+        ))}
+    </div>
 </Layout>

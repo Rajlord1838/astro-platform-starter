@@ -1,0 +1,16 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+19:15:17 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:15:17 [types] Generated 1ms
+19:15:17 [content] Syncing content
+19:15:17 [content] Synced content
+
+ astro  v5.8.0 ready in 1102 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:15:17 watching for file changes...
+19:18:43 [200] / 133ms

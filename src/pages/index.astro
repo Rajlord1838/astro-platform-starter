@@ -1,21 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import Header from '../components/Header.astro';
+import ProductCard from '../components/ProductCard.astro';
+import Cart from '../components/Cart';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="VogueStore - Fashion Excellence">
+    <Header />
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-16">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl">
+                <span class="block">New Season Arrivals</span>
+                <span class="block text-gray-600 text-3xl mt-3">Discover the latest trends</span>
+            </h1>
+            <p class="mt-4 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+                Upgrade your wardrobe with our curated collection of premium essentials and statement pieces.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8">
+            {products.map((product) => (
+                <ProductCard product={product} />
+            ))}
+        </div>
+    </main>
+
+    <footer class="bg-gray-50 mt-auto">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+            <p class="text-base text-gray-500">&copy; 2024 VogueStore. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <dialog id="cart-modal" class="backdrop:bg-black/50 p-0 rounded-lg shadow-xl m-auto w-full max-w-md">
+        <Cart client:load />
+    </dialog>
 </Layout>
+
+<style>
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+    }
+
+    dialog[open] {
+        animation: show 0.3s ease normal;
+    }
+
+    @keyframes show {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+</style>

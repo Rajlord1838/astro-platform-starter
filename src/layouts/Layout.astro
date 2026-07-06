@@ -1,12 +1,9 @@
 ---
-import '../../src/styles/globals.css';
-import '@fontsource-variable/inter/wght.css';
-import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import '../styles/globals.css';
+import { Navigation } from '../components/Navigation';
 
 interface Props {
-    title: string;
+	title: string;
 }
 
 const { title } = Astro.props;
@@ -14,21 +11,21 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{title}</title>
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
-    </head>
-    <body class="antialiased text-white bg-complementary">
-        <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
-                <Header />
-                <main class="grow"><slot /></main>
-                <Footer />
-            </div>
-        </div>
-    </body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro Fashion Store" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-gray-50 text-gray-900 font-sans min-h-screen flex flex-col">
+        <Navigation client:load />
+		<main class="flex-grow container mx-auto px-4 py-8">
+			<slot />
+		</main>
+        <footer class="bg-gray-900 text-white text-center py-6 mt-12">
+            <p>&copy; {new Date().getFullYear()} Astro Fashion Store. All rights reserved.</p>
+        </footer>
+	</body>
 </html>

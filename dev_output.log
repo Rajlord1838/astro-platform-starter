@@ -1,0 +1,28 @@
+
+> astro-netlify-platform-starter@0.1.0 dev
+> astro dev
+
+▶ Astro collects anonymous usage data.
+  This information helps us improve Astro.
+  Run "astro telemetry disable" to opt-out.
+  https://astro.build/telemetry
+
+19:21:54 [@astrojs/netlify] Enabling sessions with filesystem storage
+19:21:54 [types] Generated 1ms
+19:21:54 [content] Syncing content
+19:21:54 [content] Synced content
+
+ astro  v5.8.0 ready in 925 ms
+
+┃ Local    http://localhost:4321/
+┃ Network  use --host to expose
+
+19:21:54 watching for file changes...
+
+ update  ▶ New version of Astro available: 7.0.6
+  Run npx @astrojs/upgrade to update
+
+19:23:47 [200] / 165ms
+19:24:45 [200] / 39ms
+19:24:45 [watch] dev_output.log
+19:24:45 [watch] dev_output.log

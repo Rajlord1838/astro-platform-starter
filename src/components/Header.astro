@@ -1,30 +1,68 @@
 ---
-import Logo from '../components/Logo.astro';
+import CartIcon from './CartIcon';
+import CartModal from './CartModal';
 
 const navItems = [
     { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    { linkText: 'Shop', href: '/' },
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
+<header class="flex flex-wrap items-center justify-between pt-6 pb-8 sm:pt-12 sm:pb-12 border-b border-gray-700/50 mb-8">
+    <div class="flex items-center gap-6">
+        <a href="/" class="text-2xl font-bold tracking-tighter text-white no-underline hover:opacity-100">
+            CHIC<span class="text-primary">STYLE</span>
+        </a>
+        {
+            !!navItems?.length && (
+                <nav>
+                    <ul class="flex flex-wrap gap-x-6 gap-y-1">
+                        {navItems.map((item) => (
+                            <li>
+                                <a href={item.href} class="inline-block text-gray-300 transition-colors hover:text-white font-medium">
+                                    {item.linkText}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )
+        }
+    </div>
+
+    <div>
+        <CartIcon client:load />
+    </div>
+</header>
+
+<dialog id="cart-modal" class="p-0 m-0 fixed right-0 top-0 h-full w-full max-w-md bg-transparent backdrop:bg-black/50 overflow-hidden shadow-2xl">
+    <CartModal client:load />
+</dialog>
+
+<style>
+    dialog[open] {
+        animation: slide-in 0.3s ease-out;
     }
-</nav>
+
+    dialog::backdrop {
+        animation: fade-in 0.3s ease-out;
+    }
+
+    @keyframes slide-in {
+        from {
+            transform: translateX(100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            background-color: transparent;
+        }
+        to {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+</style>

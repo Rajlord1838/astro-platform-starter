@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cart from '../components/Cart.tsx';
+---
+
+<Layout title="Shopping Cart - Fashion Store">
+    <div class="max-w-4xl mx-auto w-full pb-16">
+        <Cart client:load />
+    </div>
+</Layout>

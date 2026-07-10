@@ -2,15 +2,9 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+    --color-primary: #111827;
+    --color-primary-content: #ffffff;
+    --color-complementary: #f3f4f6;
 }
 
 @layer base {
@@ -23,7 +17,7 @@
     }
 
     a:not(.btn) {
-        @apply underline transition hover:opacity-80;
+        @apply transition hover:opacity-80;
     }
 
     pre {
@@ -31,48 +25,38 @@
     }
 
     :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
+        @apply px-1 py-0.5 font-mono rounded bg-gray-100 text-gray-900;
         font-size: 0.9em;
     }
 }
 
 @layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
-
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
-    }
-
     .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
+        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-medium no-underline transition-colors;
+        padding: var(--btn-py, 0.75rem) var(--btn-px, 1.25rem);
         font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
+        border-radius: var(--btn-border-radius, 0.375rem);
 
         &:hover {
-            @apply bg-primary/85;
+            @apply bg-gray-800;
         }
 
         &:disabled {
-            @apply text-gray-400 bg-gray-700;
+            @apply text-gray-400 bg-gray-200 cursor-not-allowed;
         }
     }
 
     .btn-lg {
-        --btn-font-size: 1.125rem;
+        --btn-font-size: 1rem;
         --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
+        --btn-py: 1rem;
+    }
+
+    .btn-outline {
+        @apply bg-transparent text-primary border border-primary;
+
+        &:hover {
+            @apply bg-gray-50;
+        }
     }
 }

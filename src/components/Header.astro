@@ -3,51 +3,28 @@ import Logo from '../components/Logo.astro';
 
 const navItems = [
     { linkText: 'Home', href: '/' },
-    { linkText: 'Men', href: '#' },
-    { linkText: 'Women', href: '#' },
-    { linkText: 'Accessories', href: '#' }
+    { linkText: 'Revalidation', href: '/revalidation' },
+    { linkText: 'Image CDN', href: '/image-cdn' },
+    { linkText: 'Edge Function', href: '/edge' },
+    { linkText: 'Blobs', href: '/blobs' }
 ];
 ---
 
-<nav class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <div class="flex items-center gap-8">
-        <a href="/">
-            <Logo />
-        </a>
-        {
-            !!navItems?.length && (
-                <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                    {navItems.map((item) => (
-                        <li>
-                            <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2 no-underline hover:text-primary transition-colors">
-                                {item.linkText}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            )
-        }
-    </div>
-    <div>
-        <a href="#" class="btn" id="cart-button">Cart (0)</a>
-    </div>
-</nav>
-
-<script>
-    import { getCart } from '../utils/cart';
-
-    function updateCartCount() {
-        const cartButton = document.getElementById('cart-button');
-        if (cartButton) {
-            const cart = getCart();
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            cartButton.textContent = `Cart (${count})`;
-        }
+<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
+    <a href="/">
+        <Logo />
+    </a>
+    {
+        !!navItems?.length && (
+            <ul class="flex flex-wrap gap-x-4 gap-y-1">
+                {navItems.map((item) => (
+                    <li>
+                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
+                            {item.linkText}
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        )
     }
-
-    // Update initially
-    updateCartCount();
-
-    // Listen for cart updates
-    document.addEventListener('cart-updated', updateCartCount);
-</script>
+</nav>

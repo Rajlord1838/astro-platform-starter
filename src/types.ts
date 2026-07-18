@@ -11,3 +11,17 @@ export type BlobProps = {
     svgPath: string;
     parameters: BlobParameterProps;
 };
+
+export interface Product {
+    id: string;
+    name: string;
+    price: number;
+    description: string;
+    image: string;
+    category: 'Men' | 'Women' | 'Accessories';
+}
+
+export interface CartItem {
+    product: Product;
+    quantity: number;
+}

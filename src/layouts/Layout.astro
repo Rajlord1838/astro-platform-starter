@@ -22,11 +22,19 @@ const { title } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
     </head>
-    <body class="antialiased text-white bg-complementary">
-        <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
+    <body class="antialiased text-gray-900 bg-gray-50 min-h-screen flex flex-col">
+        <div class="bg-black text-white px-6 sm:px-12">
+            <div class="max-w-7xl mx-auto">
                 <Header />
-                <main class="grow"><slot /></main>
+            </div>
+        </div>
+
+        <main class="flex-grow max-w-7xl mx-auto w-full px-6 sm:px-12 py-8">
+            <slot />
+        </main>
+
+        <div class="bg-black text-white px-6 sm:px-12 mt-auto">
+            <div class="max-w-7xl mx-auto">
                 <Footer />
             </div>
         </div>

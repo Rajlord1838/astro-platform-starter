@@ -1,0 +1,15 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartView from '../components/CartView.tsx';
+---
+
+<Layout title="Your Cart - Fashion Store">
+    <div class="mb-10">
+        <h1 class="mb-2">Your Shopping Cart</h1>
+        <p class="text-gray-400">Review your items and proceed to checkout.</p>
+    </div>
+
+    <div class="mb-16">
+        <CartView client:load />
+    </div>
+</Layout>

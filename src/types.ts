@@ -1,13 +1,7 @@
-export type BlobParameterProps = {
-    seed: number;
-    size: number;
-    edges: number;
-    growth: number;
-    name: string;
-    colors: string[];
-};
+import type { Product } from './data/products';
 
-export type BlobProps = {
-    svgPath: string;
-    parameters: BlobParameterProps;
-};
+export interface CartItem {
+    id: string;
+    productId: string;
+    quantity: number;
+}

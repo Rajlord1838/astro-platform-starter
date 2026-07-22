@@ -1,0 +1,10 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CartPage from '../components/CartPage';
+---
+
+<Layout title="Your Shopping Cart - Fashion Store">
+    <div class="pb-12">
+        <CartPage client:load />
+    </div>
+</Layout>

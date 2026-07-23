@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { CartIcon } from '../components/CartIcon';
 
 interface Props {
     title: string;
@@ -24,9 +25,16 @@ const { title } = Astro.props;
     </head>
     <body class="antialiased text-white bg-complementary">
         <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
-                <Header />
-                <main class="grow"><slot /></main>
+            <div class="flex flex-col w-full max-w-7xl mx-auto grow">
+                <header class="flex justify-between items-center py-6 border-b border-gray-800">
+                    <a href="/" class="text-2xl font-bold tracking-tight text-white hover:text-primary transition-colors no-underline">
+                        LUMIN<span class="text-primary">A</span>
+                    </a>
+                    <nav class="flex gap-4 items-center">
+                        <CartIcon client:load />
+                    </nav>
+                </header>
+                <main class="grow py-8"><slot /></main>
                 <Footer />
             </div>
         </div>

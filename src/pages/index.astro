@@ -1,21 +1,46 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import { ProductCard } from '../components/ProductCard';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="LUMINA | Modern Fashion">
+    {/* Hero Section */}
+    <div class="relative rounded-2xl overflow-hidden mb-16 bg-gray-900 border border-gray-800">
+        <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent z-10"></div>
+        <img
+            src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=2000"
+            alt="Fashion Hero"
+            class="absolute inset-0 w-full h-full object-cover opacity-50"
+        />
+        <div class="relative z-20 px-8 py-24 sm:px-16 sm:py-32 flex flex-col items-start max-w-2xl">
+            <span class="text-primary font-bold tracking-wider uppercase text-sm mb-4">New Collection</span>
+            <h1 class="text-5xl sm:text-6xl font-extrabold text-white mb-6 leading-tight">
+                Define Your <br/>
+                <span class="text-primary">Style</span>
+            </h1>
+            <p class="text-gray-300 text-lg sm:text-xl mb-10 max-w-lg leading-relaxed">
+                Discover our latest collection of premium clothing and accessories designed for the modern individual.
+            </p>
+            <a href="#collection" class="btn btn-lg bg-white text-gray-900 hover:bg-gray-200">
+                Shop Collection
+            </a>
+        </div>
+    </div>
+
+    {/* Products Section */}
+    <div id="collection" class="scroll-mt-8">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-white mb-2">Featured Collection</h2>
+                <p class="text-gray-400">Handpicked essentials for your wardrobe.</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {products.map((product) => (
+                <ProductCard client:load product={product} />
+            ))}
+        </div>
+    </div>
 </Layout>

@@ -1,13 +1,8 @@
-export type BlobParameterProps = {
-    seed: number;
-    size: number;
-    edges: number;
-    growth: number;
+export interface Product {
+    id: string;
     name: string;
-    colors: string[];
-};
-
-export type BlobProps = {
-    svgPath: string;
-    parameters: BlobParameterProps;
-};
+    description: string;
+    price: number;
+    category: 'men' | 'women' | 'accessories';
+    image: string;
+}

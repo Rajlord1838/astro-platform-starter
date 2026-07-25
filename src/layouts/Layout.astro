@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { CartDialog } from '../components/CartDialog.tsx';
 
 interface Props {
     title: string;
@@ -30,5 +31,6 @@ const { title } = Astro.props;
                 <Footer />
             </div>
         </div>
+        <CartDialog client:load />
     </body>
 </html>

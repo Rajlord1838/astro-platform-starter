@@ -1,30 +1,54 @@
----
-import Logo from '../components/Logo.astro';
+<header class="bg-white shadow-sm sticky top-0 z-40">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <div class="flex-shrink-0">
+      <a href="/" class="text-xl font-bold tracking-tight text-gray-900">
+        Fashion Store
+      </a>
+    </div>
+    <div class="flex items-center">
+      <button
+        id="cart-toggle"
+        class="p-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors relative"
+        aria-label="Toggle cart"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-bag"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span
+          id="cart-badge"
+          class="absolute top-0 right-0 -mt-1 -mr-1 flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-black rounded-full hidden"
+        >
+          0
+        </span>
+      </button>
+    </div>
+  </div>
+</header>
 
-const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
-];
----
+<script>
+  function updateCartBadge() {
+    const badge = document.getElementById('cart-badge');
+    const stored = localStorage.getItem('fashion_store_cart');
+    const cart = stored ? JSON.parse(stored) : [];
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
+    const count = cart.reduce((acc: number, item: any) => acc + item.quantity, 0);
+
+    if (badge) {
+      if (count > 0) {
+        badge.textContent = count.toString();
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
     }
-</nav>
+  }
+
+  // Update on load
+  updateCartBadge();
+
+  // Update when cart changes
+  window.addEventListener('cart-updated', updateCartBadge);
+
+  // Toggle Cart visibility (handled by Cart component, but we dispatch an event to open it)
+  document.getElementById('cart-toggle')?.addEventListener('click', () => {
+    window.dispatchEvent(new Event('toggle-cart'));
+  });
+</script>

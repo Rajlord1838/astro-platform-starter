@@ -1,0 +1,66 @@
+---
+import { CartContent } from './CartContent';
+---
+
+<dialog id="cart-dialog" class="backdrop:bg-black/50 p-0 m-auto w-full max-w-lg rounded-xl shadow-2xl bg-white border-0 open:flex flex-col h-[80vh] max-h-[800px]">
+    <div class="flex justify-between items-center p-6 border-b border-gray-200">
+        <h2 class="text-2xl font-bold text-gray-900 m-0">Shopping Cart</h2>
+        <form method="dialog">
+            <button class="p-2 -mr-2 text-gray-500 hover:text-gray-700 transition-colors rounded-full hover:bg-gray-100" aria-label="Close cart">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+            </button>
+        </form>
+    </div>
+
+    <div class="flex-1 overflow-hidden p-6">
+        <CartContent client:load />
+    </div>
+</dialog>
+
+<script>
+    // Close modal when clicking outside
+    const dialog = document.getElementById('cart-dialog') as HTMLDialogElement;
+    if (dialog) {
+        dialog.addEventListener('click', (e) => {
+            const dialogDimensions = dialog.getBoundingClientRect()
+            if (
+                e.clientX < dialogDimensions.left ||
+                e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top ||
+                e.clientY > dialogDimensions.bottom
+            ) {
+                dialog.close()
+            }
+        });
+    }
+</script>
+
+<style>
+    dialog[open] {
+        animation: scale-up 0.2s ease-out;
+    }
+
+    dialog::backdrop {
+        animation: fade-in 0.2s ease-out;
+    }
+
+    @keyframes scale-up {
+        from {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        to {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes fade-in {
+        from {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        to {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+    }
+</style>

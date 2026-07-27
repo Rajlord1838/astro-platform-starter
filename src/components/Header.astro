@@ -1,30 +1,37 @@
 ---
 import Logo from '../components/Logo.astro';
+import { CartIndicator } from './CartIndicator';
 
 const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    { linkText: 'Shop', href: '/' }
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+<nav class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
+    <div class="flex items-center gap-8">
+        <a href="/">
+            <Logo />
+        </a>
+        {
+            !!navItems?.length && (
+                <ul class="flex flex-wrap gap-x-4 gap-y-1">
+                    {navItems.map((item) => (
+                        <li>
+                            <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2 text-lg font-medium hover:text-primary transition-colors">
+                                {item.linkText}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
+    </div>
+
+    <button
+        class="p-2 hover:bg-white/10 rounded-full transition-colors cursor-pointer"
+        onclick="document.getElementById('cart-dialog').showModal()"
+        aria-label="Open cart"
+    >
+        <CartIndicator client:load />
+    </button>
 </nav>

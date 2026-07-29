@@ -1,21 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import ProductCard from '../components/ProductCard.astro';
+import CartContent from '../components/CartContent';
+import { products } from '../data/products';
+import { X } from 'lucide-react';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store">
+    <div class="mb-8">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight text-white sm:text-5xl">Latest Collection</h1>
+        <p class="text-lg text-gray-300">Discover our newest arrivals for the season.</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-8 mb-16">
+        {products.map((product) => (
+            <ProductCard product={product} />
+        ))}
+    </div>
+
+    {/* Native HTML Dialog for Cart Modal */}
+    <dialog id="cart-modal" class="backdrop:bg-black/60 bg-white text-gray-900 rounded-xl shadow-2xl p-0 w-full max-w-md ml-auto mr-4 mt-20 sm:mr-12 sm:mt-24 max-h-[80vh] overflow-hidden m-0 sm:m-0 open:animate-in open:fade-in open:slide-in-from-top-4">
+        <div class="flex flex-col h-full max-h-[80vh]">
+            <div class="flex items-center justify-between border-b border-gray-200 px-6 py-4">
+                <h2 class="text-xl font-bold text-gray-900">Shopping Cart</h2>
+                <button
+                    onclick="document.getElementById('cart-modal').close()"
+                    class="text-gray-400 hover:text-gray-500 bg-transparent border-0 cursor-pointer"
+                    aria-label="Close cart"
+                >
+                    <X size={24} />
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto px-6 py-4">
+                <CartContent client:load />
+            </div>
+        </div>
+    </dialog>
+
+    <style>
+        /* Dialog specific styling */
+        dialog::backdrop {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Prevent body scrolling when dialog is open */
+        body:has(dialog[open]) {
+            overflow: hidden;
+        }
+    </style>
 </Layout>

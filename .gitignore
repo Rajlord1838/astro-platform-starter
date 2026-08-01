@@ -22,3 +22,9 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+
+# Testing artifacts
+dev_output.log
+verify_frontend.py
+success_screenshot.png
+error_screenshot.png

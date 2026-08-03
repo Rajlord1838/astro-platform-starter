@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Cart from '../components/Cart';
 
 interface Props {
     title: string;
@@ -30,5 +31,41 @@ const { title } = Astro.props;
                 <Footer />
             </div>
         </div>
+
+        <dialog id="cart-modal" class="p-0 m-0 w-full h-full max-w-full max-h-full bg-black/50 backdrop-blur-sm open:flex justify-end">
+            <div class="h-full w-full max-w-md ml-auto translate-x-full animate-slide-in">
+                <Cart client:load />
+            </div>
+        </dialog>
+
+        <style>
+            dialog::backdrop {
+                background: rgba(0, 0, 0, 0.5);
+                backdrop-filter: blur(4px);
+            }
+            .animate-slide-in {
+                animation: slideIn 0.3s forwards ease-out;
+            }
+            @keyframes slideIn {
+                from { transform: translateX(100%); }
+                to { transform: translateX(0); }
+            }
+        </style>
+
+        <script>
+            // Close modal when clicking on backdrop
+            const dialog = document.getElementById('cart-modal') as HTMLDialogElement;
+            dialog?.addEventListener('click', (e) => {
+                const dialogDimensions = dialog.getBoundingClientRect()
+                if (
+                    e.clientX < dialogDimensions.left ||
+                    e.clientX > dialogDimensions.right ||
+                    e.clientY < dialogDimensions.top ||
+                    e.clientY > dialogDimensions.bottom
+                ) {
+                    dialog.close();
+                }
+            });
+        </script>
     </body>
 </html>

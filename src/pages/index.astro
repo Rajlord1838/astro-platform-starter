@@ -1,21 +1,34 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import { products } from '../data/products';
+import { AddToCartButton } from '../components/AddToCartButton';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store">
+    <div class="mb-12">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">Latest Arrivals</h1>
+        <p class="text-lg text-gray-300">Discover our new collection of premium fashion essentials.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map((product) => (
+            <div class="bg-gray-900 rounded-lg overflow-hidden shadow-lg border border-gray-800 flex flex-col">
+                <div class="aspect-w-3 aspect-h-4 relative">
+                    <img
+                        src={product.image}
+                        alt={product.name}
+                        class="w-full h-64 object-cover"
+                    />
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-xl font-bold">{product.name}</h2>
+                        <span class="text-primary font-semibold">${product.price.toFixed(2)}</span>
+                    </div>
+                    <p class="text-gray-400 text-sm flex-grow mb-4">{product.description}</p>
+                    <AddToCartButton product={product} client:load />
+                </div>
+            </div>
+        ))}
+    </div>
 </Layout>

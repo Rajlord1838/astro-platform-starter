@@ -1,30 +1,21 @@
 ---
 import Logo from '../components/Logo.astro';
-
-const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
-];
+import CartIcon from './CartIcon.tsx';
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
+<nav class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
+    <a href="/" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
         <Logo />
+        <span class="text-xl font-bold tracking-tight text-white hidden sm:block">Fashion Store</span>
     </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+
+    <div class="flex items-center gap-4">
+        <ul class="flex items-center gap-4 text-sm font-medium text-neutral-300">
+            <li><a href="/" class="hover:text-white transition-colors">Men</a></li>
+            <li><a href="/" class="hover:text-white transition-colors">Women</a></li>
+            <li><a href="/" class="hover:text-white transition-colors">Accessories</a></li>
+        </ul>
+        <div class="w-px h-6 bg-neutral-700 mx-2 hidden sm:block"></div>
+        <CartIcon client:load />
+    </div>
 </nav>

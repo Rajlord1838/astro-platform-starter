@@ -1,30 +1,34 @@
 ---
 import Logo from '../components/Logo.astro';
+import { Cart } from './Cart.tsx';
 
 const navItems = [
     { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    { linkText: 'Shop', href: '#' },
+    { linkText: 'About', href: '#' },
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
+<header class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-12 sm:pt-12 sm:pb-16 relative z-40">
+    <a href="/" class="flex items-center gap-2 no-underline hover:opacity-80 transition-opacity">
         <Logo />
+        <span class="text-xl font-bold font-sans tracking-tight text-white hidden sm:inline-block">FashionStore</span>
     </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
-</nav>
+
+    <div class="flex items-center gap-6">
+        {
+            !!navItems?.length && (
+                <ul class="flex flex-wrap gap-x-2 gap-y-1">
+                    {navItems.map((item) => (
+                        <li>
+                            <a href={item.href} class="inline-block px-2 py-1 font-medium hover:text-primary transition-colors no-underline">
+                                {item.linkText}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
+        <Cart client:load />
+    </div>
+</header>

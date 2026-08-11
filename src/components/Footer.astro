@@ -1,9 +1,42 @@
 ---
-
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
-    </p>
+<footer class="bg-gray-900 border-t border-gray-800 py-12 px-6 sm:px-12 mt-12">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="col-span-1 md:col-span-2">
+            <a href="/" class="flex items-center gap-2 group mb-4">
+                <div class="w-8 h-8 bg-primary rounded flex items-center justify-center text-white font-bold text-sm">
+                    FS
+                </div>
+                <span class="text-lg font-bold text-white tracking-tight">FashionStore</span>
+            </a>
+            <p class="text-gray-400 max-w-sm">
+                Your one-stop destination for trendy and affordable fashion. We believe style should be accessible to everyone.
+            </p>
+        </div>
+
+        <div>
+            <h3 class="text-white font-semibold mb-4">Shop</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Men's Clothing</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Women's Clothing</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Accessories</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">New Arrivals</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h3 class="text-white font-semibold mb-4">Help</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Customer Service</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Shipping & Returns</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Size Guide</a></li>
+                <li><a href="#" class="text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+        &copy; {currentYear} FashionStore. All rights reserved.
+    </div>
 </footer>

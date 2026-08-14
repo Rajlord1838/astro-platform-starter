@@ -1,21 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
+import ProductGrid from '../components/ProductGrid';
 
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="MODA | Modern Fashion Store">
+    <div class="flex flex-col items-center w-full">
+        <section class="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-black text-white rounded-2xl mb-12 relative overflow-hidden">
+            <div class="absolute inset-0 bg-cover bg-center opacity-40" style="background-image: url('https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=2000');"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent"></div>
+            <div class="container px-4 md:px-6 relative z-10 max-w-5xl mx-auto">
+                <div class="flex flex-col items-start space-y-4 text-left">
+                    <div class="space-y-2">
+                        <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl/none">
+                            Discover Your <br/><span class="text-primary">Signature Style</span>
+                        </h1>
+                        <p class="mx-auto max-w-[700px] text-gray-300 md:text-xl lg:text-2xl pt-4">
+                            Elevate your wardrobe with our curated collection of premium essentials and statement pieces.
+                        </p>
+                    </div>
+                    <div class="space-x-4 pt-4">
+                        <a href="#shop" class="inline-flex h-12 items-center justify-center rounded-md bg-white px-8 text-sm font-medium text-black shadow transition-colors hover:bg-gray-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50">
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div id="shop" class="w-full max-w-7xl mx-auto px-4">
+            <ProductGrid client:load />
+        </div>
+    </div>
 </Layout>

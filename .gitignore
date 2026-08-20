@@ -22,3 +22,5 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+dev_server.log
+/home/jules/verification/

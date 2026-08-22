@@ -1,21 +1,53 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import { products } from '../data/products';
+import AddToCartButton from '../components/react/AddToCartButton';
+import CartModalContent from '../components/react/CartModalContent';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="FashionStore - Latest Trends">
+    <div class="mb-12">
+        <h1 class="mb-4 text-4xl font-bold tracking-tight sm:text-5xl">Latest Trends</h1>
+        <p class="text-lg text-gray-600">Discover our new arrivals and find your perfect style.</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+            <div class="flex flex-col overflow-hidden bg-white rounded-lg shadow-sm border border-gray-100 transition-shadow hover:shadow-md">
+                <img
+                    src={product.image}
+                    alt={product.name}
+                    class="object-cover w-full h-64"
+                    loading="lazy"
+                />
+                <div class="flex flex-col flex-1 p-6">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-xs font-medium tracking-wider text-gray-500 uppercase">
+                            {product.category}
+                        </span>
+                        <span class="text-lg font-bold text-gray-900">
+                            ${product.price.toFixed(2)}
+                        </span>
+                    </div>
+                    <h2 class="mb-2 text-xl font-bold text-gray-900">{product.name}</h2>
+                    <p class="mb-6 text-sm text-gray-600 line-clamp-2 flex-1">
+                        {product.description}
+                    </p>
+                    <div class="mt-auto">
+                        <AddToCartButton product={product} client:load />
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
+
+    <dialog id="cart-modal" class="p-0 bg-transparent backdrop:bg-gray-900/50 rounded-lg shadow-2xl m-auto w-full max-w-md open:animate-in open:fade-in open:zoom-in-95">
+        <CartModalContent client:load />
+    </dialog>
 </Layout>
+
+<style>
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.5);
+    }
+</style>

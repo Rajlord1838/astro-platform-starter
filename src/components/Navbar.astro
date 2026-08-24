@@ -1,0 +1,21 @@
+---
+import CartBadge from './react/CartBadge.tsx';
+import CartModal from './react/CartModal.tsx';
+---
+
+<header class="py-6 flex items-center justify-between border-b border-white/10 mb-8">
+    <div class="flex items-center gap-2">
+        <a href="/" class="text-2xl font-bold tracking-tight text-white flex items-center gap-2 no-underline hover:opacity-100">
+            <span class="bg-primary text-white p-2 rounded-lg leading-none">FS</span>
+            Fashion Store
+        </a>
+    </div>
+
+    <nav class="flex items-center gap-6">
+        <a href="/" class="text-white hover:text-primary transition-colors no-underline font-medium">Shop</a>
+        <div class="flex items-center gap-4 border-l border-white/20 pl-6">
+            <CartBadge client:load />
+            <CartModal client:load />
+        </div>
+    </nav>
+</header>

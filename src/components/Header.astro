@@ -1,30 +1,36 @@
 ---
 import Logo from '../components/Logo.astro';
+import CartButton from './react/CartButton.tsx';
+import Cart from './react/Cart.tsx';
 
 const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    { linkText: 'Home', href: '/' }
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
+<nav class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
+    <div class="flex items-center gap-6">
+        <a href="/">
+            <Logo />
+        </a>
+        {
+            !!navItems?.length && (
+                <ul class="flex flex-wrap gap-x-4 gap-y-1">
+                    {navItems.map((item) => (
+                        <li>
+                            <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
+                                {item.linkText}
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            )
+        }
+    </div>
+
+    <div>
+        <CartButton client:load />
+    </div>
 </nav>
+
+<Cart client:load />

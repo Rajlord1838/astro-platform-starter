@@ -22,3 +22,4 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+dev_output.log\ndev_server.log\ndev_server.pid\ntest-results/\nplaywright-report/\nblob-local/\nverification/

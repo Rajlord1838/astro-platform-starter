@@ -1,9 +1,41 @@
 ---
-
+const currentYear = new Date().getFullYear();
 ---
 
-<footer class="pt-16 pb-12 sm:pt-24 sm:pb-16">
-    <p class="text-sm">
-        <a href="https://docs.netlify.com/frameworks/astro/" class="decoration-dashed text-primary underline-offset-8"> Astro on Netlify </a>
-    </p>
+<footer class="mt-auto border-t border-border bg-complementary py-8 text-gray-900">
+    <div class="mx-auto max-w-7xl px-6">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+            <div>
+                <h3 class="mb-4 text-lg font-bold">LUMIÈRE</h3>
+                <p class="text-sm text-gray-600">Elevating everyday style with sustainable, high-quality fashion essentials.</p>
+            </div>
+            <div>
+                <h4 class="mb-4 font-semibold">Shop</h4>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li><a href="#" class="hover:text-primary transition-colors no-underline">New Arrivals</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors no-underline">Best Sellers</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors no-underline">Sale</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-4 font-semibold">Support</h4>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li><a href="#" class="hover:text-primary transition-colors no-underline">FAQ</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors no-underline">Shipping & Returns</a></li>
+                    <li><a href="#" class="hover:text-primary transition-colors no-underline">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-4 font-semibold">Newsletter</h4>
+                <p class="mb-2 text-sm text-gray-600">Subscribe for updates and exclusive offers.</p>
+                <div class="flex gap-2">
+                    <input type="email" placeholder="Email address" class="w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-primary focus:outline-none" />
+                    <button class="rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-content hover:bg-primary/90 transition-colors">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 border-t border-gray-200 pt-8 text-center text-sm text-gray-500">
+            &copy; {currentYear} Lumière Fashion. All rights reserved.
+        </div>
+    </div>
 </footer>

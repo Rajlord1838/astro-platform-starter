@@ -22,3 +22,10 @@ pnpm-debug.log*
 
 # Local Netlify folder
 .netlify
+dev_server.log
+dev_output.log
+dev_server.pid
+test-results/
+playwright-report/
+blob-local/
+verification/

@@ -1,78 +1,44 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
-@theme {
-    --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
-    --background-image-noise: linear-gradient(
-            to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
-        ),
-        url('/images/noise.png');
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
 }
 
 @layer base {
-    h1 {
-        @apply text-4xl font-bold tracking-tight sm:text-5xl;
-    }
-
-    h2 {
-        @apply text-2xl font-bold sm:text-3xl;
-    }
-
-    a:not(.btn) {
-        @apply underline transition hover:opacity-80;
-    }
-
-    pre {
-        @apply p-6 overflow-x-auto rounded-lg;
-    }
-
-    :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
-        font-size: 0.9em;
-    }
-}
-
-@layer components {
-    .markdown {
-        > * {
-            @apply my-6;
-        }
-
-        :where(h1, h2) {
-            @apply mt-12 mb-6;
-        }
-
-        > :first-child {
-            @apply mt-0;
-        }
-
-        > :last-child {
-            @apply mb-0;
-        }
-    }
-
-    .btn {
-        @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-content cursor-pointer text-center font-semibold no-underline transition-colors;
-        padding: var(--btn-py, 0.875rem) var(--btn-px, 1.25rem);
-        font-size: var(--btn-font-size, 0.875rem);
-        border-radius: var(--btn-border-radius, 0.25rem);
-
-        &:hover {
-            @apply bg-primary/85;
-        }
-
-        &:disabled {
-            @apply text-gray-400 bg-gray-700;
-        }
-    }
-
-    .btn-lg {
-        --btn-font-size: 1.125rem;
-        --btn-px: 1.5rem;
-        --btn-py: 1.125rem;
-    }
+  * {
+    @apply border-slate-200;
+  }
+  body {
+    @apply bg-white text-slate-900;
+  }
 }

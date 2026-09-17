@@ -1,21 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import AddToCartButton from '../components/react/AddToCartButton';
+import { products } from '../data/products';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="FashionStore | Discover Your Style">
+    <div class="mb-12 text-center">
+        <h1 class="mb-4">Discover Your Style</h1>
+        <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+            Explore our curated collection of premium fashion pieces designed for everyday elegance and comfort.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {products.map((product) => (
+            <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow border border-gray-100 group">
+                <div class="relative overflow-hidden aspect-[4/5]">
+                    <img
+                        src={product.image}
+                        alt={product.name}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                    />
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-semibold text-gray-900 shadow-sm">
+                        {product.category}
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-2">
+                        <h2 class="text-xl font-bold text-gray-900 mb-0">{product.name}</h2>
+                        <span class="text-lg font-bold text-primary ml-2">${product.price}</span>
+                    </div>
+                    <p class="text-gray-600 mb-4 h-12 overflow-hidden text-sm line-clamp-2">{product.description}</p>
+
+                    <AddToCartButton product={product} client:load />
+                </div>
+            </div>
+        ))}
+    </div>
 </Layout>

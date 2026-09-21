@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import CartModal from '../components/react/CartModal';
 
 interface Props {
     title: string;
@@ -28,6 +29,7 @@ const { title } = Astro.props;
                 <Header />
                 <main class="grow"><slot /></main>
                 <Footer />
+                <CartModal client:load />
             </div>
         </div>
     </body>

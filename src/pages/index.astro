@@ -1,21 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ContextAlert from '../components/ContextAlert.astro';
-import Markdown from '../components/Markdown.astro';
-
-const explainer = `
-An Astro website can go way beyond static pages - on the right platform.
-
-Netlify supports not only [Streaming SSR](https://docs.astro.build/en/guides/server-side-rendering/#html-streaming) and fast [Edge Middleware](https://docs.astro.build/en/guides/middleware/), but also [on-demand revalidation](https://www.netlify.com/blog/cache-tags-and-purge-api-on-netlify/) and [stale-while-revalidate](https://www.netlify.com/blog/swr-and-fine-grained-cache-control/). 
-Any page or data can be rebuilt only when needed, without site visitors ever getting a performance hit.
-`;
+import { products } from '../data/products';
+import AddToCartButton from '../components/react/AddToCartButton';
 ---
 
-<Layout title="Welcome to Astro.">
-    <ContextAlert class="mb-8" />
-    <h1 class="mb-10">Netlify Platform Starter for Astro</h1>
-    <Markdown content={explainer} class="mb-10 text-lg" />
-    <p>
-        <a href="https://docs.netlify.com/frameworks/astro/" class="btn btn-lg sm:min-w-64">Read the Docs</a>
-    </p>
+<Layout title="Fashion Store | Shop the latest trends">
+    <div class="mb-12 text-center">
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl text-white">
+            Discover Your Style
+        </h1>
+        <p class="max-w-2xl mx-auto text-xl text-gray-300">
+            Shop the latest trends in fashion. Quality clothing for every occasion.
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+            <div class="flex flex-col overflow-hidden transition-all duration-300 bg-gray-900 rounded-xl hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-1">
+                <div class="relative aspect-[3/4] overflow-hidden">
+                    <img
+                        src={product.imageUrl}
+                        alt={product.title}
+                        class="object-cover w-full h-full transition-transform duration-500 hover:scale-105"
+                    />
+                    <div class="absolute top-4 left-4">
+                        <span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-white/90 text-gray-900 rounded-full backdrop-blur-sm">
+                            {product.category}
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col flex-1 p-6">
+                    <div class="flex items-start justify-between mb-2">
+                        <h2 class="text-xl font-bold text-white line-clamp-1" title={product.title}>
+                            {product.title}
+                        </h2>
+                        <span class="text-lg font-bold text-primary whitespace-nowrap ml-4">
+                            ${product.price.toFixed(2)}
+                        </span>
+                    </div>
+
+                    <p class="flex-1 text-sm text-gray-400 line-clamp-2 mb-6" title={product.description}>
+                        {product.description}
+                    </p>
+
+                    <div class="mt-auto">
+                        <AddToCartButton client:load product={product} />
+                    </div>
+                </div>
+            </div>
+        ))}
+    </div>
 </Layout>

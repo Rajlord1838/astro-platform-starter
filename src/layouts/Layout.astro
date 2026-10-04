@@ -4,6 +4,7 @@ import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { Cart } from '../components/react/Cart';
 
 interface Props {
     title: string;
@@ -22,13 +23,17 @@ const { title } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
     </head>
-    <body class="antialiased text-white bg-complementary">
-        <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
-                <Header />
-                <main class="grow"><slot /></main>
-                <Footer />
-            </div>
-        </div>
+    <body className="antialiased text-white bg-slate-950 font-sans min-h-screen flex flex-col">
+        <Header />
+
+        {/* Main Content Area */}
+        <main className="flex-grow">
+            <slot />
+        </main>
+
+        <Footer />
+
+        {/* Render the interactive Cart component using a client directive */}
+        <Cart client:load />
     </body>
 </html>

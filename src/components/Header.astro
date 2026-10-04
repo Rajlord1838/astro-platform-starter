@@ -1,30 +1,39 @@
 ---
-import Logo from '../components/Logo.astro';
-
-const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
-];
+import { CartButton } from './react/CartButton';
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
-</nav>
+<header className="sticky top-0 z-40 bg-slate-900/80 backdrop-blur-md border-b border-slate-800">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+            {/* Logo */}
+            <a href="/" className="flex items-center gap-2">
+                <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center text-slate-900 font-bold text-xl">
+                    F
+                </div>
+                <span className="font-bold text-xl tracking-tight text-white hidden sm:block">
+                    Fashion<span className="text-teal-400">Store</span>
+                </span>
+            </a>
+
+            {/* Navigation (Placeholder for now) */}
+            <nav className="hidden md:flex space-x-8">
+                <a href="#" className="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">New Arrivals</a>
+                <a href="#" className="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Men</a>
+                <a href="#" className="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Women</a>
+                <a href="#" className="text-slate-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors">Accessories</a>
+            </nav>
+
+            {/* Actions */}
+            <div className="flex items-center gap-4">
+                <button className="text-slate-300 hover:text-white p-2 hidden sm:block">
+                    Search
+                </button>
+                {/*
+                    Interactive CartButton requires client directive to hydrate and
+                    run React state/effects in Astro.
+                */}
+                <CartButton client:load />
+            </div>
+        </div>
+    </div>
+</header>

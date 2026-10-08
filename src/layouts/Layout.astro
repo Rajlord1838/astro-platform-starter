@@ -2,8 +2,8 @@
 import '../../src/styles/globals.css';
 import '@fontsource-variable/inter/wght.css';
 import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import { CartBadge } from '../components/react/CartBadge';
+import { CartModal } from '../components/react/CartModal';
 
 interface Props {
     title: string;
@@ -22,13 +22,29 @@ const { title } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <link rel="preload" as="font" type="font/woff2" href={interWoff2} crossorigin />
     </head>
-    <body class="antialiased text-white bg-complementary">
-        <div class="flex flex-col min-h-screen px-6 bg-noise sm:px-12">
-            <div class="flex flex-col w-full max-w-5xl mx-auto grow">
-                <Header />
-                <main class="grow"><slot /></main>
-                <Footer />
-            </div>
+    <body class="antialiased text-gray-900 bg-gray-50 font-sans">
+        <div class="flex flex-col min-h-screen">
+            <header class="bg-white border-b sticky top-0 z-10 px-6 sm:px-12">
+                <div class="flex items-center justify-between w-full max-w-5xl mx-auto h-16">
+                    <a href="/" class="text-xl font-bold tracking-tight text-black">
+                        FashionStore
+                    </a>
+                    <div class="flex items-center gap-4">
+                        <CartBadge client:load />
+                    </div>
+                </div>
+            </header>
+
+            <main class="grow w-full max-w-5xl mx-auto px-6 sm:px-12 py-8">
+                <slot />
+            </main>
+
+            <footer class="bg-white border-t mt-auto">
+                <div class="w-full max-w-5xl mx-auto px-6 sm:px-12 py-8 text-center text-sm text-gray-500">
+                    &copy; {new Date().getFullYear()} FashionStore. All rights reserved.
+                </div>
+            </footer>
         </div>
+        <CartModal client:load />
     </body>
 </html>

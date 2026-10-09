@@ -1,0 +1,31 @@
+---
+import type { Product } from '../types';
+import AddToCartButton from './react/AddToCartButton';
+
+interface Props {
+    product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<div class="flex flex-col bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div class="relative pt-[125%]">
+        <img
+            src={product.image}
+            alt={product.name}
+            class="absolute inset-0 w-full h-full object-cover"
+            loading="lazy"
+        />
+        <div class="absolute top-2 left-2 px-2 py-1 bg-gray-900/80 text-xs text-white rounded font-medium backdrop-blur-sm">
+            {product.category}
+        </div>
+    </div>
+    <div class="p-4 flex flex-col flex-1">
+        <h3 class="text-lg font-bold text-white line-clamp-1 mb-1">{product.name}</h3>
+        <p class="text-sm text-gray-400 line-clamp-2 mb-3 flex-1">{product.description}</p>
+        <div class="text-xl font-bold text-white mb-2">${product.price.toFixed(2)}</div>
+
+        <AddToCartButton product={product} client:load />
+    </div>
+</div>

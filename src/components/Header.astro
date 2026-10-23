@@ -1,30 +1,41 @@
 ---
 import Logo from '../components/Logo.astro';
+import CartIcon from './react/CartIcon.tsx';
 
 const navItems = [
     { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
+    { linkText: 'Men', href: '#' },
+    { linkText: 'Women', href: '#' },
+    { linkText: 'Shoes', href: '#' },
+    { linkText: 'Accessories', href: '#' }
 ];
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
-        <Logo />
-    </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        )
-    }
-</nav>
+<header class="flex flex-wrap items-center justify-between gap-4 pt-6 pb-8 border-b border-gray-800/50 mb-8">
+    <div class="flex items-center gap-8">
+        <a href="/" class="flex items-center gap-2 font-bold text-xl hover:text-primary transition">
+            <span class="text-3xl text-primary">F</span>
+            <span>FashionStore</span>
+        </a>
+
+        {
+            !!navItems?.length && (
+                <nav class="hidden sm:block">
+                    <ul class="flex flex-wrap gap-x-6 gap-y-2">
+                        {navItems.map((item) => (
+                            <li>
+                                <a href={item.href} class="font-medium hover:text-primary transition-colors py-2">
+                                    {item.linkText}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )
+        }
+    </div>
+
+    <div class="flex items-center gap-4">
+        <CartIcon client:load />
+    </div>
+</header>

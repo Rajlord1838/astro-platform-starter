@@ -2,13 +2,13 @@
 
 @theme {
     --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    --color-primary: #f67280;
-    --color-primary-content: #101828;
-    --color-complementary: #355c7d;
+    --color-primary: #111827;
+    --color-primary-content: #ffffff;
+    --color-complementary: #f9fafb;
     --background-image-noise: linear-gradient(
             to bottom,
-            color-mix(in oklab, var(--color-gray-950) 0%, transparent),
-            color-mix(in oklab, var(--color-gray-950) 100%, transparent)
+            color-mix(in oklab, var(--color-gray-50) 0%, transparent),
+            color-mix(in oklab, var(--color-gray-50) 100%, transparent)
         ),
         url('/images/noise.png');
 }
@@ -31,7 +31,7 @@
     }
 
     :not(pre) > code {
-        @apply px-1 py-0.5 font-mono rounded bg-gray-900 text-primary;
+        @apply px-1 py-0.5 font-mono rounded bg-gray-100 text-primary;
         font-size: 0.9em;
     }
 }
@@ -66,7 +66,7 @@
         }
 
         &:disabled {
-            @apply text-gray-400 bg-gray-700;
+            @apply text-gray-400 bg-gray-200 cursor-not-allowed;
         }
     }
 

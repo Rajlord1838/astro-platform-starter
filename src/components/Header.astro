@@ -1,30 +1,25 @@
 ---
 import Logo from '../components/Logo.astro';
-
-const navItems = [
-    { linkText: 'Home', href: '/' },
-    { linkText: 'Revalidation', href: '/revalidation' },
-    { linkText: 'Image CDN', href: '/image-cdn' },
-    { linkText: 'Edge Function', href: '/edge' },
-    { linkText: 'Blobs', href: '/blobs' }
-];
+import CartButton from './react/CartButton';
+import CartModal from './react/CartModal';
 ---
 
-<nav class="flex flex-wrap items-center gap-4 pt-6 pb-16 sm:pt-12 sm:pb-24">
-    <a href="/">
+<header className="flex items-center justify-between pt-6 pb-12 sm:pt-12 sm:pb-16">
+    <a href="/" className="hover:opacity-80 transition-opacity">
         <Logo />
     </a>
-    {
-        !!navItems?.length && (
-            <ul class="flex flex-wrap gap-x-4 gap-y-1">
-                {navItems.map((item) => (
-                    <li>
-                        <a href={item.href} class="inline-block px-1.5 py-1 sm:px-3 sm:py-2">
-                            {item.linkText}
-                        </a>
-                    </li>
-                ))}
+
+    <div className="flex items-center gap-4">
+        <nav className="hidden sm:block">
+            <ul className="flex gap-6 text-sm font-medium text-gray-300">
+                <li><a href="#" className="hover:text-white transition-colors no-underline">Men</a></li>
+                <li><a href="#" className="hover:text-white transition-colors no-underline">Women</a></li>
+                <li><a href="#" className="hover:text-white transition-colors no-underline">Accessories</a></li>
             </ul>
-        )
-    }
-</nav>
+        </nav>
+
+        <CartButton client:load />
+    </div>
+
+    <CartModal client:load />
+</header>
